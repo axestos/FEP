@@ -1,23 +1,28 @@
 <app-header></app-header>
 <br><br>
+<!-- <h1 *ngIf="authService.user | async">Hallo: {{ (authService.user | async)?.email }}!</h1> -->
+
+<!-- <div *ngIf="!(authService.user | async)"> -->
 <div class="container">
   <div class="jumbotron">
 <h1>Login</h1>
-<form>
+
   <div class="form-group row">
     <label for="email" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="email" placeholder="naam.achternaam@student.hu.nl">
+      <input type="email" [(ngModel)]="email" class="form-control" id="email" placeholder="naam.achternaam@student.hu.nl">
     </div>
   </div>
   <div class="form-group row">
     <label for="wachtwoord" class="col-sm-2 col-form-label">Wachtwoord</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="wachtwoord" placeholder="******">
+      <input type="password" [(ngModel)]="password" class="form-control" id="wachtwoord" placeholder="*******">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary float-right">Inloggen</button>
-</form>
+  <!-- <button type="submit" class="btn btn-primary float-right">Inloggen</button> -->
+  <button class="btn btn-primary float-right" (click)="login()" [disabled]="!email || !password"> Inloggen </button>
+
   </div>
   </div>
+<!-- </div> -->
 <app-footer></app-footer>
