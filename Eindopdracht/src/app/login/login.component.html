@@ -5,23 +5,28 @@
 <!-- <div *ngIf="!(authService.user | async)"> -->
 <div class="container">
   <div class="jumbotron">
+          <div *ngIf="error.message" class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{error.message}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 <h1>Login</h1>
 
   <div class="form-group row">
-    <label for="email" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" [(ngModel)]="email" class="form-control" id="email" placeholder="naam.achternaam@student.hu.nl">
+    <label for="email" class="col-sm-4 col-form-label">Email</label>
+    <div class="col-sm-8">
+      <input type="email" [(ngModel)]="email" class="form-control" id="email">
     </div>
   </div>
   <div class="form-group row">
-    <label for="wachtwoord" class="col-sm-2 col-form-label">Wachtwoord</label>
-    <div class="col-sm-10">
-      <input type="password" [(ngModel)]="password" class="form-control" id="wachtwoord" placeholder="*******">
+    <label for="wachtwoord" class="col-sm-4 col-form-label">Wachtwoord</label>
+    <div class="col-sm-8">
+      <input type="password" [(ngModel)]="password" class="form-control" id="wachtwoord">
     </div>
   </div>
-  <!-- <button type="submit" class="btn btn-primary float-right">Inloggen</button> -->
-  <button class="btn btn-primary float-right" (click)="login()" [disabled]="!email || !password"> Inloggen </button>
 
+  <button class="btn btn-primary float-right" (click)="login()" [disabled]="!email || !password"> Inloggen </button>
   </div>
   </div>
 <!-- </div> -->

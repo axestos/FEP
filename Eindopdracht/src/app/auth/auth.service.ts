@@ -11,7 +11,7 @@ export class AuthService {
       this.user = firebaseAuth.authState;
     }
 
-    login(email: string, password: string) {
+    login(email: string, password: string, error: {message:string}) {
         this.firebaseAuth
           .auth
           .signInWithEmailAndPassword(email, password)
@@ -20,6 +20,7 @@ export class AuthService {
           })
           .catch(err => {
             console.log('Er is iets fout gegaan: ',err.message);
+          error.message = err.message;
           });
       }
 

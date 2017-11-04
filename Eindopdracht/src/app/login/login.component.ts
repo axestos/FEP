@@ -14,9 +14,15 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(public authService: AuthService) {}
+
+  error = {
+    message : null
+  }
+
   login() {
-      this.authService.login(this.email, this.password);
-      this.email = this.password = '';
+    this.error.message = null;
+      this.authService.login(this.email, this.password, this.error);
+      this.password = '';
     }
 
     logout() {
