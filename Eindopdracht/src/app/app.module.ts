@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
   authDomain: "fep-project-31319.firebaseapp.com",
   databaseURL: "https://fep-project-31319.firebaseio.com",
@@ -33,6 +33,6 @@ export const firebaseConfig = {
     FormsModule
   ],
   providers: [AuthService],
-  bootstrap: [LoginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
