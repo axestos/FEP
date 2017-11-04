@@ -1,0 +1,30 @@
+.list-group-item {
+  width:150x;
+  background:none;
+  border:none;
+  display: inline-block;
+}
+
+.list-inline {
+  width: auto;
+  display: inline-block;
+}
+
+#navigation {
+  display: inline-block;
+  border-bottom: 1px solid black;
+  height: 50px;
+
+
+}
+
+#nav-row {
+
+}
+
+.if {
+  display: inline-block;
+}
+
+#logoutButton {
+}
