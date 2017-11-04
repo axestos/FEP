@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h1> {{productNaam}}  </h1>
+
+  <div class="row">
+
+    <div class="col-md-3">
+      <img src="https://static.gamma.nl/dam/49795/22" width="200" height="200" />
+    </div>
+
+    <div class="col-md-8">
+        {{productInfo}}
+    </div>
+
+  </div>
+
+  <h2> Lenen </h2>
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Aantal</h5>
+    </div>
+
+    <div class="col-md-4">
+      <input type="text"/> <i>Maximaal te lenen: <b>{{maximaalTeLenen}}</b></i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Terugbrengen op:</h5>
+    </div>
+
+    <div class="col-md-5">
+      <input type="date"/> <i>Uiterlijk te lenen tot: <b>{{uiterlijkeDatum}}</b></i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <br/>
+      <button>Toevoegen aan winkelmandje </button>
+    </div>
+
+  </div>
+
+</div>

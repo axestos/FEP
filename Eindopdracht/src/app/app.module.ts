@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
+import { ProductinfoComponent } from './productinfo/productinfo.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -24,7 +25,8 @@ const firebaseConfig = {
     AppComponent,
     LoginComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductinfoComponent
   ],
   imports: [
     BrowserModule,
