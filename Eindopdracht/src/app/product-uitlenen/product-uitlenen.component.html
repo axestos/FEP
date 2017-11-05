@@ -29,14 +29,16 @@
           <th> Uitlenen </th>
 
 
-          <tr *ngFor="let lening of leningen; let i=index">
-            <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
-            <td>{{ lening.productNaam }}</td>
-            <td> {{lening.userId}}</td>
-            <td>{{ lening.datum }}</td>
-            <td>{{ lening.inleverdatum }}</td>
-            <td>{{ lening.aantal }}</td>
-            <td> <a href="/productuitlenen"><img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" /> </a></td>
+          <tr *ngFor="let lening of leningen; let i=index" >
+            <ng-container *ngIf="!lening.opgehaald">
+              <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
+              <td>{{ lening.productNaam }}</td>
+              <td> {{lening.userId}}</td>
+              <td>{{ lening.datum }}</td>
+              <td>{{ lening.inleverdatum }}</td>
+              <td>{{ lening.aantal }}</td>
+              <td> <a href="/productuitlenen"><img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" /> </a></td>
+            </ng-container>
           </tr>
 
 

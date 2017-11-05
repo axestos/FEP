@@ -10,7 +10,7 @@ import { UitleenService} from '../product-uitlenen/uitleen.service';
 export class ProductUitlenenComponent implements OnInit {
 
 
-  public leningen : {userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+  public leningen : {opgehaald: string, userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
 
    constructor(public uitleenService: UitleenService) {
      this.leningen = uitleenService.leningen;

@@ -13,7 +13,7 @@ export class UitleenService {
       this.user = authService.user;
     }
 
-  public leningen : {userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+  public leningen : {opgehaald: string, userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
 
   public users : {username : string};
 
@@ -31,10 +31,7 @@ export class UitleenService {
    var that = this;
    var leningen = firebase.database().ref("/leningen/" + key);
    leningen.orderByKey().on("child_added", function(data) {
-
-   if(!data.child("opgehaald").val()) {
-     that.setLoanValues(data, key);
-   }
+   that.setLoanValues(data, key);
    });
  }
 
@@ -46,7 +43,7 @@ export class UitleenService {
    product.orderByValue().on("value", function(data) {
      var imgLocation = data.child("imgLocation").val();
      var productName = data.child("productNaam").val();
-     that.leningen.push({'userId' : userId, 'productName' : productName ,'imgSrc' : imgLocation,'productNaam' : productName, 'aantal' : loanData.child("aantal").val(), 'datum' : loanData.child("datum_aangevraagd").val(), 'inleverdatum' : loanData.child("inleverdatum").val()});
+     that.leningen.push({'opgehaald' : loanData.child('opgehaald').val(), 'userId' : userId, 'productName' : productName ,'imgSrc' : imgLocation,'productNaam' : productName, 'aantal' : loanData.child("aantal").val(), 'datum' : loanData.child("datum_aangevraagd").val(), 'inleverdatum' : loanData.child("inleverdatum").val()});
    });
 
  }
