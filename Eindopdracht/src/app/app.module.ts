@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
+import { routing } from './app.routing';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -32,7 +33,8 @@ const firebaseConfig = {
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
