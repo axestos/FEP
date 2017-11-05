@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { hardware } from './hardware';
+import { HardwareService} from '../beschikbarehardware/hardware.service';
 
 
 @Component({
@@ -10,8 +11,10 @@ import { hardware } from './hardware';
 export class BeschikbarehardwareComponent implements OnInit {
 
   public hardwareList:hardware[]=[];
+  public producten : {imgLocation : string, maxLeenTijd : number; productNaam : string; productOmschrijving : string; productVoorraad : number;}[] = [];
 
-  constructor() {
+
+  constructor(public hardwareService: HardwareService) {
     this.hardwareList[0] = new hardware();
     this.hardwareList[0].naam = "Arduino";
     this.hardwareList[0].omschrijving = "ArduinoDesc";
@@ -26,12 +29,19 @@ export class BeschikbarehardwareComponent implements OnInit {
     this.hardwareList[1].voorraad = 66;
     this.hardwareList[1].maxLeentijdDagen = 6;
 
+    this.producten = hardwareService.producten;
 
   }
 
 
-
-  ngOnInit() {
+  loadData(){
+    this.hardwareService.loadKeys();
   }
+
+
+ ngOnInit() {
+   this.loadData();
+ }
+
 
 }

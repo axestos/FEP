@@ -13,6 +13,7 @@ import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import {UitleenService} from './product-uitlenen/uitleen.service';
 import {ProductinfoService} from './productinfo/productinfo.service';
+import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
@@ -50,7 +51,7 @@ const firebaseConfig = {
     routing
   ],
   providers: [AuthService,
-              UitleenService, ProductinfoService],
+              UitleenService, ProductinfoService, HardwareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
