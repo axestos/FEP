@@ -10,7 +10,7 @@ import { UitleenService} from '../product-uitlenen/uitleen.service';
 export class ProductUitlenenComponent implements OnInit {
 
 
-  public leningen : {productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+  public leningen : {userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
 
    constructor(public uitleenService: UitleenService) {
      this.leningen = uitleenService.leningen;
@@ -19,14 +19,7 @@ export class ProductUitlenenComponent implements OnInit {
    loadData(){
      this.uitleenService.loadKeys();
    }
-  //  loadData() {
-  //    var leningen = firebase.database().ref("leningen/");
-  //    leningen.orderByKey().on("child_added", function(data) {
-   //
-  //      this.leningenList.push({'productnaam' : data.key, 'aantal' : data.val().aantal, 'datum_aangevraagd' : data.val().datum_aangevraagd, 'inleverdatum' : data.val().inleverdatum});
-   //
-  //    });
-  //  }
+
 
   ngOnInit() {
     this.loadData();

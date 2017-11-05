@@ -6,13 +6,13 @@
       <img src="http://demo.qodeinteractive.com/central/wp-content/uploads/2013/05/header.jpg" height="200" width="100%"/>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <br/>
         <form class="searchForm">
 
           <h3> Product uitlenen </h3>
-          <input type="text" placeholder="Zoek op studentnummer">
-
+          <input type="text" placeholder="Zoek op studentnummer"/>
+          <input type="button" value="Zoeken"/>
         </form>
 
     </div>
@@ -23,17 +23,20 @@
           <th> Product </th>
           <th> Productnaam </th>
           <th> Klantnaam </th>
-          <th> Inleverdatum </th>
           <th> Datum aangevraagd </th>
+          <th> Inleverdatum </th>
           <th> Aantal </th>
           <th> Uitlenen </th>
 
 
           <tr *ngFor="let lening of leningen; let i=index">
+            <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
             <td>{{ lening.productNaam }}</td>
-            <td>{{ lening.aantal }}</td>
+            <td> {{lening.userId}}</td>
             <td>{{ lening.datum }}</td>
             <td>{{ lening.inleverdatum }}</td>
+            <td>{{ lening.aantal }}</td>
+            <td> <a href="/productuitlenen"><img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" /> </a></td>
           </tr>
 
 

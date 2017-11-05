@@ -13,15 +13,16 @@ export class UitleenService {
       this.user = authService.user;
     }
 
-  public leningen : {productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+  public leningen : {userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+
+  public users : {username : string};
 
   public keys : {key: string}[] = [];
 
     loadKeys() {
       var that = this;
-      //TODO de /code moet aangepast worden zodat het van de huidige gebruiker is bij de student
-     var leningen = firebase.database().ref("/leningen/");
-     leningen.orderByKey().on("child_added", function(data) {
+      var leningen = firebase.database().ref("/leningen/");
+      leningen.orderByKey().on("child_added", function(data) {
       that.addLoan(data.key);
    });
  }
@@ -31,10 +32,29 @@ export class UitleenService {
    var leningen = firebase.database().ref("/leningen/" + key);
    leningen.orderByKey().on("child_added", function(data) {
 
-     if(!data.child("opgehaald").val()) {
-       that.leningen.push({'productNaam' : data.key, 'aantal' : data.child("aantal").val(), 'datum' : data.child("datum_aangevraagd").val(), 'inleverdatum' : data.child("inleverdatum").val()});
-     }
+   if(!data.child("opgehaald").val()) {
+     that.setLoanValues(data, key);
+   }
+   });
+ }
 
+ setLoanValues(loanData, userId) {
+   var productId = loanData.key;
+   var that = this;
+   var product = firebase.database().ref("/producten/" + productId);
+
+   product.orderByValue().on("value", function(data) {
+     var imgLocation = data.child("imgLocation").val();
+     var productName = data.child("productNaam").val();
+     that.leningen.push({'userId' : userId, 'productName' : productName ,'imgSrc' : imgLocation,'productNaam' : productName, 'aantal' : loanData.child("aantal").val(), 'datum' : loanData.child("datum_aangevraagd").val(), 'inleverdatum' : loanData.child("inleverdatum").val()});
+   });
+
+ }
+
+ addUser(key) {
+   var that = this;
+   var leningen = firebase.database().ref("/leningen/" + key);
+   leningen.orderByKey().on("child_added", function(data) {
 
    });
  }
