@@ -18,6 +18,9 @@
 
     </div>
 
+
+    <button class="btn btn-primary float-right" (click)="loadData()"> GetDataBaseLening </button>
+    {{test[0]['aantal']}}
     <div class="col-md-12">
 
         <table class="table">
@@ -29,7 +32,10 @@
           <th> Aantal </th>
           <th> Uitlenen </th>
 
-          {{leningenList}}
+
+          <tr *ngFor="let x of data; let i=index">
+            <td>{{ x }}</td>
+        </tr>
 
 
 

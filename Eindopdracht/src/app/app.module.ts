@@ -11,6 +11,8 @@ import { AuthService } from './auth/auth.service';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
+import {UitleenService} from './product-uitlenen/uitleen.service';
+import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -29,7 +31,8 @@ const firebaseConfig = {
     FooterComponent,
     HeaderComponent,
     ProductinfoComponent,
-    ProductUitlenenComponent
+    ProductUitlenenComponent,
+    ProductTerugnemenComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ const firebaseConfig = {
     FormsModule,
     routing
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+              UitleenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

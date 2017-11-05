@@ -2,6 +2,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { LoginComponent } from './login/login.component';
+import { ProductUitlenenComponent} from './product-uitlenen/product-uitlenen.component';
 
 const appRoutes: Routes = [
   {
@@ -11,6 +12,10 @@ const appRoutes: Routes = [
   {
     path: 'productinfo',
     component: ProductinfoComponent
+  },
+  {
+    path: 'productuitlenen',
+    component: ProductUitlenenComponent
   }
 ];
 

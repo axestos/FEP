@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
 
     constructor(private firebaseAuth: AngularFireAuth) {
       this.user = firebaseAuth.authState;
@@ -18,12 +18,14 @@ export class AuthService {
           .signInWithEmailAndPassword(email, password)
           .then(value => {
             console.log('Logged in!');
+
           })
           .catch(err => {
             console.log('Er is iets fout gegaan: ',err.message);
           error.message = err.message;
           });
       }
+
 
       logout() {
         this.firebaseAuth
