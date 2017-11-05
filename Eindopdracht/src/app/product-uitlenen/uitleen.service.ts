@@ -19,6 +19,7 @@ export class UitleenService {
 
   public keys : {key: string}[] = [];
 
+
     loadKeys() {
       var that = this;
       var leningen = firebase.database().ref("/leningen/");
@@ -31,7 +32,9 @@ export class UitleenService {
    var that = this;
    var leningen = firebase.database().ref("/leningen/" + key);
    leningen.orderByKey().on("child_added", function(data) {
-   that.setLoanValues(data, key);
+   if(!data.child("opgehaald").val()) {
+      that.setLoanValues(data, key);
+    }
    });
  }
 
