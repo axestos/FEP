@@ -1,3 +1,49 @@
-<p>
-  product-terugnemen works!
-</p>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <img src="http://demo.qodeinteractive.com/central/wp-content/uploads/2013/05/header.jpg" height="200" width="100%"/>
+    </div>
+
+    <div class="col-md-4">
+        <br/>
+        <form class="searchForm">
+
+          <h3> Product terugnemen </h3>
+          <input type="text" placeholder="Zoek op studentnummer">
+
+        </form>
+
+    </div>
+
+
+    <button class="btn btn-primary float-right" (click)="loadData()"> GetDataBaseLening </button>
+    {{test[0]['aantal']}}
+    <div class="col-md-12">
+
+        <table class="table">
+          <th> Product </th>
+          <th> Productnaam </th>
+          <th> Klantnaam </th>
+          <th> Inleverdatum </th>
+          <th> Datum aangevraagd </th>
+          <th> Aantal </th>
+          <th> Uitlenen </th>
+
+
+          <tr *ngFor="let x of data; let i=index">
+            <td>{{ x }}</td>
+          </tr>
+
+
+
+        </table>
+
+    </div>
+
+  </div>
+
+
+</div>

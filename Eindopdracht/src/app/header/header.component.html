@@ -4,19 +4,19 @@
 
         <div class="col-md-10" id="navigation">
           <ul class="list-inline">
-            <a href="#" class="list-group-item">Dashboard</a>
+            <a href="/dashboard" class="list-group-item">Dashboard</a>
             <div *ngIf="docent" class="if">
-              <a href="#" class="list-group-item">Hardware</a>
+              <a href="/hardware" class="list-group-item">Hardware</a>
             </div>
 
             <div *ngIf="!docent" class="if">
-              <a href="#" class="list-group-item">Uitlenen</a>
-              <a href="#" class="list-group-item">Terugnemen</a>
-              <a href="#" class="list-group-item">Hardware</a>
+              <a href="/productuitlenen" class="list-group-item">Uitlenen</a>
+              <a href="/productterugnemen" class="list-group-item">Terugnemen</a>
+              <a href="/hardware" class="list-group-item">Hardware</a>
             </div>
 
 
-            <a href="#" class="list-group-item">Uitloggen ({{username}})</a>
+            <a href="/logout" class="list-group-item">Uitloggen ({{username}})</a>
           </ul>
 
         </div>
