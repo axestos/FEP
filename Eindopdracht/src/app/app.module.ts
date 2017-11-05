@@ -14,11 +14,11 @@ import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.co
 import {UitleenService} from './product-uitlenen/uitleen.service';
 import {ProductinfoService} from './productinfo/productinfo.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
-<<<<<<< Updated upstream
+
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
-=======
+
 import { DashboardComponent } from './dashboard/dashboard.component';
->>>>>>> Stashed changes
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -39,11 +39,8 @@ const firebaseConfig = {
     ProductinfoComponent,
     ProductUitlenenComponent,
     ProductTerugnemenComponent,
-<<<<<<< Updated upstream
-    BeschikbarehardwareComponent
-=======
+    BeschikbarehardwareComponent,
     DashboardComponent
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,10 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
-import { LoginComponent } from './login/login.component';
+
 import { ProductUitlenenComponent} from './product-uitlenen/product-uitlenen.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import {ProductTerugnemenComponent} from './product-terugnemen/product-terugnemen.component';
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
 
@@ -10,6 +12,10 @@ const appRoutes: Routes = [
   {
     path: '',
     component: LoginComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: 'productinfo/:id',

@@ -5,6 +5,8 @@
         <div class="col-md-10" id="navigation">
           <ul class="list-inline">
             <a href="/dashboard" class="list-group-item">Dashboard</a>
+            <!-- Even tijdelijk -->
+<a href="/productinfo" class="list-group-item">Product</a>
             <div *ngIf="docent" class="if">
               <a href="/hardware" class="list-group-item">Hardware</a>
             </div>
@@ -12,18 +14,14 @@
             <div *ngIf="!docent" class="if">
               <a href="/productuitlenen" class="list-group-item">Uitlenen</a>
               <a href="/productterugnemen" class="list-group-item">Terugnemen</a>
-<<<<<<< Updated upstream
+
               <a href="/beschikbarehardware" class="list-group-item">Hardware</a>
             </div>
 
-=======
-              <a href="/hardware" class="list-group-item">Hardware</a>
-<!-- Even tijdelijk -->
-<a href="/productinfo" class="list-group-item">Product</a>
->>>>>>> Stashed changes
 
-            </div>
-            <a href="#" (click)="logout()" class="list-group-item">Uitloggen ({{username}})</a>
+              <a href="/hardware" class="list-group-item">Hardware</a>
+       <a href="#" (click)="logout()" class="list-group-item">Uitloggen ({{username}})</a>
+
           </ul>
 
         </div>
