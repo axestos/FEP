@@ -4,6 +4,8 @@ import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { LoginComponent } from './login/login.component';
 import { ProductUitlenenComponent} from './product-uitlenen/product-uitlenen.component';
 import {ProductTerugnemenComponent} from './product-terugnemen/product-terugnemen.component';
+import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -20,6 +22,10 @@ const appRoutes: Routes = [
   {
     path: 'productterugnemen',
     component: ProductTerugnemenComponent
+  },
+  {
+    path: 'beschikbarehardware',
+    component: BeschikbarehardwareComponent
   }
 ];
 

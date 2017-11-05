@@ -13,6 +13,7 @@ import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import {UitleenService} from './product-uitlenen/uitleen.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
+import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -32,7 +33,8 @@ const firebaseConfig = {
     HeaderComponent,
     ProductinfoComponent,
     ProductUitlenenComponent,
-    ProductTerugnemenComponent
+    ProductTerugnemenComponent,
+    BeschikbarehardwareComponent
   ],
   imports: [
     BrowserModule,
