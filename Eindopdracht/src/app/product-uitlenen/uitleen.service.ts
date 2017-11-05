@@ -13,20 +13,29 @@ export class UitleenService {
       this.user = authService.user;
     }
 
-  //  public leningenList : {productnaam : string; aantal : number; datum_aangevraagd: string; inleverdatum : string;}[] = [];
+  public leningen : {productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
 
-  //public leningenList : {productnaam : string; aantal : number; datum_aangevraagd: string; inleverdatum : string;}[] = [];
-  public test : {aantal : string;}[] = [];
+  public keys : {key: string}[] = [];
 
-    loadData() {
+    loadKeys() {
       var that = this;
-     var leningen = firebase.database().ref("leningen/EcMaCzZ4p0RQq4GBws1O3kiGu9y2/");
+      //TODO de /code moet aangepast worden zodat het van de huidige gebruiker is bij de student
+     var leningen = firebase.database().ref("/leningen/");
      leningen.orderByKey().on("child_added", function(data) {
-       //console.log(data.child("aantal").val());
-       that.test.push({'aantal' : data.child("aantal").val()});
-       //test.test1 = that.test;
+      that.addLoan(data.key);
+   });
+ }
 
-       //this.leningenList.push({'productnaam' : data.key, 'aantal' : data.val().aantal, 'datum_aangevraagd' : data.val().datum_aangevraagd, 'inleverdatum' : data.val().inleverdatum});
+ addLoan(key) {
+   var that = this;
+   var leningen = firebase.database().ref("/leningen/" + key);
+   leningen.orderByKey().on("child_added", function(data) {
+
+     if(!data.child("opgehaald").val()) {
+       that.leningen.push({'productNaam' : data.key, 'aantal' : data.child("aantal").val(), 'datum' : data.child("datum_aangevraagd").val(), 'inleverdatum' : data.child("inleverdatum").val()});
+     }
+
+
    });
  }
 

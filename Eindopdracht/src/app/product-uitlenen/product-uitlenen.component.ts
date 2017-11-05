@@ -9,19 +9,15 @@ import { UitleenService} from '../product-uitlenen/uitleen.service';
 })
 export class ProductUitlenenComponent implements OnInit {
 
- public leningenList : {productnaam : string; aantal : number; datum_aangevraagd: string; inleverdatum : string;}[] = [];
 
- public test : {aantal : string;}[] = [];
+  public leningen : {productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
 
    constructor(public uitleenService: UitleenService) {
-     this.test = uitleenService.test;
+     this.leningen = uitleenService.leningen;
    }
 
    loadData(){
-     this.uitleenService.loadData();
-
-     console.log(this.test);
-
+     this.uitleenService.loadKeys();
    }
   //  loadData() {
   //    var leningen = firebase.database().ref("leningen/");
@@ -33,5 +29,6 @@ export class ProductUitlenenComponent implements OnInit {
   //  }
 
   ngOnInit() {
+    this.loadData();
   }
 }
