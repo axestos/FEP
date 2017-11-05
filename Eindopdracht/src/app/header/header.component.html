@@ -12,11 +12,18 @@
             <div *ngIf="!docent" class="if">
               <a href="/productuitlenen" class="list-group-item">Uitlenen</a>
               <a href="/productterugnemen" class="list-group-item">Terugnemen</a>
+<<<<<<< Updated upstream
               <a href="/beschikbarehardware" class="list-group-item">Hardware</a>
             </div>
 
+=======
+              <a href="/hardware" class="list-group-item">Hardware</a>
+<!-- Even tijdelijk -->
+<a href="/productinfo" class="list-group-item">Product</a>
+>>>>>>> Stashed changes
 
-            <a href="/logout" class="list-group-item">Uitloggen ({{username}})</a>
+            </div>
+            <a href="#" (click)="logout()" class="list-group-item">Uitloggen ({{username}})</a>
           </ul>
 
         </div>

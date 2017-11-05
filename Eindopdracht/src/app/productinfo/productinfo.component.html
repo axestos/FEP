@@ -17,28 +17,28 @@
   <h2> Lenen </h2>
   <div class="row">
     <div class="col-md-3">
-      <h5>Aantal</h5>
+      <h5>Aantal {{id}} {{test.productNaam}}</h5>
     </div>
 
-    <div class="col-md-4">
-      <input type="text"/> <i>Maximaal te lenen: <b>{{maximaalTeLenen}}</b></i>
+    <div class="col-md-9">
+      <input class="form-control" type="text" /> <i>Maximaal te lenen: <b>{{maximaalTeLenen}}</b></i>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-3">
-      <h5>Terugbrengen op:</h5>
+      <h5>Terugbrengen op</h5>
     </div>
 
-    <div class="col-md-5">
-      <input type="date"/> <i>Uiterlijk te lenen tot: <b>{{uiterlijkeDatum}}</b></i>
+    <div class="col-md-9">
+      <input class="form-control" type="date"/> <i>Uiterlijk te lenen tot: <b>{{uiterlijkeDatum}}</b></i>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-12">
       <br/>
-      <button>Toevoegen aan winkelmandje </button>
+      <button class="btn btn-primary float-right">Toevoegen aan winkelmandje </button>
     </div>
 
   </div>

@@ -12,7 +12,7 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'productinfo',
+    path: 'productinfo/:id',
     component: ProductinfoComponent
   },
   {

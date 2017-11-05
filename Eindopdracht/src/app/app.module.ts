@@ -12,8 +12,13 @@ import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import {UitleenService} from './product-uitlenen/uitleen.service';
+import {ProductinfoService} from './productinfo/productinfo.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
+<<<<<<< Updated upstream
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
+=======
+import { DashboardComponent } from './dashboard/dashboard.component';
+>>>>>>> Stashed changes
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -34,7 +39,11 @@ const firebaseConfig = {
     ProductinfoComponent,
     ProductUitlenenComponent,
     ProductTerugnemenComponent,
+<<<<<<< Updated upstream
     BeschikbarehardwareComponent
+=======
+    DashboardComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,7 @@ const firebaseConfig = {
     routing
   ],
   providers: [AuthService,
-              UitleenService],
+              UitleenService, ProductinfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
