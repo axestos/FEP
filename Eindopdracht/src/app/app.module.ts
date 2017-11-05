@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { routing } from './app.routing';
+import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAfWuTAVavRZTEnYczfxiIzLRVVAG40HD0",
@@ -27,7 +28,8 @@ const firebaseConfig = {
     LoginComponent,
     FooterComponent,
     HeaderComponent,
-    ProductinfoComponent
+    ProductinfoComponent,
+    ProductUitlenenComponent
   ],
   imports: [
     BrowserModule,
