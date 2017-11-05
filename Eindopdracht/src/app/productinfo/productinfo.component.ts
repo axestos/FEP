@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductinfoService} from '../productinfo/productinfo.service';
 
+
 @Component({
   selector: 'app-productinfo',
   templateUrl: './productinfo.component.html',
@@ -9,11 +10,11 @@ import { ProductinfoService} from '../productinfo/productinfo.service';
 })
 export class ProductinfoComponent implements OnInit, OnDestroy {
   private sub: any;
+  
  id: string;
- public test : {productNaam : string;}[] = [];
-
+ public test : {productNaam: string};
   constructor(private route: ActivatedRoute, public productinfoService: ProductinfoService) {
-    this.test = productinfoService.test;
+    this.test = {productNaam : "Jaap"};
   }
    ngOnDestroy() {
     this.sub.unsubscribe();
@@ -23,7 +24,8 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       console.log("werkt het: "+this.id)
-      this.productinfoService.loadData(this.id);
+      this.productinfoService.loadData(this.id, this.test);
+      console.log(this.test);
     });   
 }
 productNaam = 'Product '+this.id  ;

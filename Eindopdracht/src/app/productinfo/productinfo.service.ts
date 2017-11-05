@@ -8,18 +8,17 @@ import { AuthService } from '../auth/auth.service';
 export class ProductinfoService{
 
   private user: Observable<firebase.User>;
-
     constructor(private authService: AuthService) {
       this.user = authService.user;
     }
+    
 
-
-  public test : {productNaam : string;}[] = [];
-
-    loadData(id: string) {
-        var leningen = firebase.database().ref("/leningen/");
-        leningen.orderByKey().on("child_added", function(data) {
-            console.log(data.key);
+    loadData(id: string, item: {productNaam: string}) {
+      // var that = this;
+        var product = firebase.database().ref("/producten/"+id+"/").once('value').then(function(snapshot) {
+          console.log(snapshot.child("productNaam").val())
+          item = {productNaam:snapshot.child("productNaam").val()};
+          console.log(item);
       });
     }
 
