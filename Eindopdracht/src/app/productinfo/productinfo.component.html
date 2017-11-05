@@ -1,37 +1,37 @@
-<div class="container">
+<div class="container" *ngIf="product.naam">
 
-  <h1>  {{test.productNaam}} </h1>
+  <h1 *ngIf="product.naam">  {{product.naam}} </h1>
 
-  <div class="row">
+  <div class="row" *ngIf="product.imgLocation">
 
     <div class="col-md-3">
-      <img src="https://static.gamma.nl/dam/49795/22" width="200" height="200" />
+      <img src="{{product.imgLocation}}" width="200" height="200" />
     </div>
 
-    <div class="col-md-8">
-        {{productInfo}}
+    <div class="col-md-8" *ngIf="product.omschrijving">
+        {{product.omschrijving}}
     </div>
 
   </div>
 
   <h2> Lenen </h2>
-  <div class="row">
-    <div class="col-md-3">
-      <h5>Aantal {{id}}</h5>
+  <div class="row" *ngIf="product.voorraad">
+    <div class="col-md-3" >
+      <h5>Aantal</h5>
     </div>
 
     <div class="col-md-9">
-      <input class="form-control" type="text" /> <i>Maximaal te lenen: <b>{{maximaalTeLenen}}</b></i>
+      <input class="form-control" type="text" /> <i>Maximaal te lenen: <b>{{product.voorraad}}</b></i>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="product.maxLeentijdDagen">
     <div class="col-md-3">
       <h5>Terugbrengen op</h5>
     </div>
 
     <div class="col-md-9">
-      <input class="form-control" type="date"/> <i>Uiterlijk te lenen tot: <b>{{uiterlijkeDatum}}</b></i>
+      <input class="form-control" type="date" max="{{getMaxDatum()}}" min="{{getMinDatum()}}"/> <i>Uiterlijk te lenen tot: <b>{{getInleverdatum()}}</b></i>
     </div>
   </div>
 
