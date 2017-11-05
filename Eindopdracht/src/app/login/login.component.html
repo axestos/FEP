@@ -1,9 +1,4 @@
-
-<br><br>
-<!-- <h1 *ngIf="authService.user | async">Hallo: {{ (authService.user | async)?.email }}!</h1> -->
-
-<!-- <div *ngIf="!(authService.user | async)"> -->
-  <div class="jumbotron">
+ <div class="jumbotron">
       <div  *ngIf="error.message" class="alert alert-danger" role="alert">
           {{error.message}}
         </div>
@@ -23,4 +18,3 @@
   </div>
   <button class="btn btn-primary float-right" (click)="login()" [disabled]="!email || !password"> Inloggen </button>
   </div>
-<!-- </div> -->
