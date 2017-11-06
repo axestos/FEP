@@ -33,6 +33,7 @@ export class ProductinfoService{
       var that = this;
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+          console.log(user);
           that.shoppingCart.push(product);
           that.addProductToDatabase(product, user.uid);
         } else {
