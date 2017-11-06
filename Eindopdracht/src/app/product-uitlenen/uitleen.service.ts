@@ -48,7 +48,6 @@ export class UitleenService {
      leningInstance.productId = productId;
      leningInstance.opgehaald = loanData.child('opgehaald').val();
      leningInstance.userId = userId;
-     leningInstance.productName = data.child("productNaam").val();
      leningInstance.imgSrc = data.child("imgLocation").val();
      leningInstance.productNaam = data.child("productNaam").val();
      leningInstance.aantal = loanData.child("aantal").val();
