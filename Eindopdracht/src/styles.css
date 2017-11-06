@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.banner {
+  margin-left:10%;
+  opacity: 1;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+}
