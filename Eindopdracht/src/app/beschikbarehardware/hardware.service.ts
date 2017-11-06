@@ -39,8 +39,10 @@ export class HardwareService {
      hardwareComponent.maxLeentijdDagen = data.child("maxLeentijd").val();
      hardwareComponent.imgLocation = data.child("imgLocation").val();
      hardwareComponent.omschrijving = data.child("productOmschrijving").val();
-     hardwareComponent.voorraad = data.child("productVoorraad").val();;
-     that.hardwareList.push(hardwareComponent);
+     hardwareComponent.voorraad = data.child("productVoorraad").val();
+     if(hardwareComponent.voorraad > 0){
+       that.hardwareList.push(hardwareComponent);
+     }
  });
  }
 
