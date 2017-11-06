@@ -28,6 +28,7 @@ export class ProductinfoService{
     }
 
     //Product wordt ingeladen in winkelmandje array in het geheugen.
+    //TODO: controleer of hij al in winkelmandje zit.
     addToShoppingCart(product) {
       var that = this;
       firebase.auth().onAuthStateChanged(function(user) {
