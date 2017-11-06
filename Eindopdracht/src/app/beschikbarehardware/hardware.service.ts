@@ -34,17 +34,12 @@ export class HardwareService {
      var that = this;
      var producten = firebase.database().ref("/producten/" + key);
      var product = firebase.database().ref("/producten/"+key+"/").once('value').then(function(data) {
-     var imgLocation = data.child("imgLocation").val();
-     var maxLeenTijd = data.child("maxLeentijd").val();
-     var productNaam = data.child("productNaam").val();
-     var productOmschrijving = data.child("productOmschrijving").val();
-     var productVoorraad = data.child("productVoorraad").val();
      var hardwareComponent:hardware = new hardware();
-     hardwareComponent.naam = productNaam;
-     hardwareComponent.maxLeentijdDagen = maxLeenTijd;
-     hardwareComponent.imgLocation = imgLocation;
-     hardwareComponent.omschrijving = productOmschrijving
-     hardwareComponent.voorraad = productVoorraad;
+     hardwareComponent.naam = data.child("productNaam").val();
+     hardwareComponent.maxLeentijdDagen = data.child("maxLeentijd").val();
+     hardwareComponent.imgLocation = data.child("imgLocation").val();
+     hardwareComponent.omschrijving = data.child("productOmschrijving").val();
+     hardwareComponent.voorraad = data.child("productVoorraad").val();;
      that.hardwareList.push(hardwareComponent);
  });
  }
