@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
+import { hardware } from './hardware';
 
 @Injectable()
 export class HardwareService {
@@ -13,11 +14,11 @@ export class HardwareService {
       this.user = authService.user;
     }
 
-  public producten : {imgLocation : string, maxLeenTijd : number; productNaam : string; productOmschrijving : string; productVoorraad : number;}[] = [];
+
 
   public users : {username : string};
-
   public keys : {key: string}[] = [];
+  public hardwareList:hardware[]=[];
 
     loadKeys() {
       var that = this;
@@ -27,17 +28,21 @@ export class HardwareService {
    });
  }
 
+
+
  addProduct(key) {
-   var that = this;
-   var producten = firebase.database().ref("/producten/" + key);
-   var product = firebase.database().ref("/producten/"+key+"/").once('value').then(function(data) {
-     var imgLocation = data.child("imgLocation").val();
-     var maxLeenTijd = data.child("maxLeentijd").val();
-     var productNaam = data.child("productNaam").val();
-     var productOmschrijving = data.child("productOmschrijving").val();
-     var productVoorraad = data.child("productVoorraad").val();
-     that.producten.push({'imgLocation':imgLocation,'maxLeenTijd':maxLeenTijd,'productNaam':productNaam,'productOmschrijving':productOmschrijving,'productVoorraad':productVoorraad});
-     console.log(that.producten);
+     var that = this;
+     var producten = firebase.database().ref("/producten/" + key);
+     var product = firebase.database().ref("/producten/"+key+"/").once('value').then(function(data) {
+     var hardwareComponent:hardware = new hardware();
+     hardwareComponent.naam = data.child("productNaam").val();
+     hardwareComponent.maxLeentijdDagen = data.child("maxLeentijd").val();
+     hardwareComponent.imgLocation = data.child("imgLocation").val();
+     hardwareComponent.omschrijving = data.child("productOmschrijving").val();
+     hardwareComponent.voorraad = data.child("productVoorraad").val();
+     if(hardwareComponent.voorraad > 0){
+       that.hardwareList.push(hardwareComponent);
+     }
  });
  }
 

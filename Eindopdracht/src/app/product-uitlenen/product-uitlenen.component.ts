@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { UitleenService} from '../product-uitlenen/uitleen.service';
+import {Router} from '@angular/router';
+import { lening } from './lening';
 
 @Component({
   selector: 'app-product-uitlenen',
@@ -10,10 +12,22 @@ import { UitleenService} from '../product-uitlenen/uitleen.service';
 export class ProductUitlenenComponent implements OnInit {
 
 
-  public leningen : {productId : number, opgehaald: string, userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
+  public leningList:lening[]=[];
 
-   constructor(public uitleenService: UitleenService) {
-     this.leningen = uitleenService.leningen;
+   constructor(public uitleenService: UitleenService, private router: Router) {
+     this.leningList = uitleenService.leningList;
+
+     //TODO: dit globaal ergens neerzetten
+     this.router.events.subscribe(event => {
+        if (event.constructor.name === 'NavigationStart') {
+          console.log(event);
+
+          if(event['url'] === '/productuitlenen') {
+            var table = document.getElementsByClassName('table')[0];
+            table.innerHTML = '';
+          }
+        }
+     });
    }
 
    loadData(){

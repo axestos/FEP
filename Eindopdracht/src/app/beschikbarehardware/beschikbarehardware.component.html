@@ -1,8 +1,3 @@
-<p>
-  beschikbarehardware works!?
-</p>
-
-
 <table style="width:100%" border="1">
   <tr align="center" valign="middle">
     <th>Product</th>
@@ -13,26 +8,9 @@
   </tr>
   <tr align="center" valign="middle" *ngFor="let hardware of hardwareList; let i=index">
     <td><img src={{hardware.imgLocation}} height="40" width="40"/></td>
-    <td><a href={{hardware.naam}} style="display:block;">{{hardware.naam}}</a></td>
+    <td><a href="/productinfo/{{i+1}}" style="display:block;">{{hardware.naam}}</a></td>
     <td>{{ hardware.omschrijving }}</td>
     <td>{{ hardware.voorraad }}</td>
     <td>{{ hardware.maxLeentijdDagen }}</td>
-  </tr>
-</table>
-
-<table style="width:100%" border="1">
-  <tr align="center" valign="middle">
-    <th>Product</th>
-    <th>Naam</th>
-    <th>Omschrijving</th>
-    <th>Voorraad</th>
-    <th>Maximaal dagen te leen</th>
-  </tr>
-  <tr align="center" valign="middle" *ngFor="let hardware of producten; let i=index">
-    <td><img src={{hardware.imgLocation}} height="40" width="40"/></td>
-    <td><a href={{hardware.productNaam}} style="display:block;">{{hardware.productNaam}}</a></td>
-    <td>{{ hardware.productOmschrijving }}</td>
-    <td>{{ hardware.productVoorraad }}</td>
-    <td>{{ hardware.maxLeenTijd }}</td>
   </tr>
 </table>

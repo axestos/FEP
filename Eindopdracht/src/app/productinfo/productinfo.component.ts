@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductinfoService} from '../productinfo/productinfo.service';
+import { product } from './product';
 
 
 @Component({
@@ -10,32 +11,68 @@ import { ProductinfoService} from '../productinfo/productinfo.service';
 })
 export class ProductinfoComponent implements OnInit, OnDestroy {
   private sub: any;
-  
+
  id: string;
  public test : {productNaam: string};
+ public product: product;
+
   constructor(private route: ActivatedRoute, public productinfoService: ProductinfoService) {
-    this.test = {productNaam : "Jaap"};
+    this.product = new product();
   }
    ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
+  loadData() {
+    this.productinfoService.loadData(this.id, this.product);
+  }
+
+  getInleverdatum(): string{
+    let inleverDatum = new Date()
+    inleverDatum.setDate(inleverDatum.getDate() + this.product.maxLeentijdDagen);
+    var mm = inleverDatum.getMonth() + 1; // getMonth() is zero-based
+    var dd = inleverDatum.getDate();
+
+    return [(dd>9 ? '' : '0') + dd,"-",
+            (mm>9 ? '' : '0') + mm,"-",
+            inleverDatum.getFullYear()
+           ].join('');
+  }
+
+  getMinDatum(){
+    let minDatum = new Date()
+    minDatum.setDate(minDatum.getDate() + 1);
+    return this.formatDate(minDatum);
+  }
+
+
+  getMaxDatum(){
+    let maxDatum = new Date()
+    maxDatum.setDate(maxDatum.getDate() + this.product.maxLeentijdDagen);
+    return this.formatDate(maxDatum);
+  }
+
+  formatDate(date: Date){
+    var mm = date.getMonth() + 1; // getMonth() is zero-based
+    var dd = date.getDate();
+
+    return [date.getFullYear(),"-",
+            (mm>9 ? '' : '0') + mm,"-",
+            (dd>9 ? '' : '0') + dd
+           ].join('');
+
+  }
+
+
+  shoppingCartClick(product: product) {
+    this.productinfoService.addToShoppingCart(product);
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      console.log("werkt het: "+this.id)
-      this.productinfoService.loadData(this.id, this.test);
-      console.log(this.test);
-    });   
+      this.loadData();
+      console.log(this.product);
+    });
 }
-productNaam = 'Product '+this.id  ;
-maximaalTeLenen = 3;
-uiterlijkeDatum = '01-12-2018';
-productInfo = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nulla ligula,'
-+'fermentum id velit quis, condimentum accumsan ipsum. Fusce tristique enim lacus, eget suscipit dui dapibus vel.'
-+'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-+'Curabitur dignissim sapien et ligula consequat, nec ullamcorper turpis accumsan.'
-+'Vivamus posuere feugiat arcu, et gravida leo pellentesque a. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-+'Cras vitae lectus erat. Nullam vestibulum tincidunt sem eget lobortis. In laoreet ultrices sapien, at scelerisque diam pretium eget.'
-+'Fusce orci turpis, suscipit quis porttitor in, accumsan sed dolor. Duis porttitor pretium nibh, commodo bibendum elit dictum non.'
 }

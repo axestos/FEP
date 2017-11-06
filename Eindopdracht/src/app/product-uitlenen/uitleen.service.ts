@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
+import { lening } from './lening';
 
 @Injectable()
 export class UitleenService {
@@ -13,11 +14,10 @@ export class UitleenService {
       this.user = authService.user;
     }
 
-  public leningen : {productId : number, opgehaald: string, userId : string, productName : string; imgSrc : string; productNaam : string; aantal : string; datum: string; inleverdatum : string}[] = [];
-
   public users : {username : string};
-
   public keys : {key: string}[] = [];
+  public leningList:lening[]=[];
+
 
     loadKeys() {
       var that = this;
@@ -31,7 +31,9 @@ export class UitleenService {
    var that = this;
    var leningen = firebase.database().ref("/leningen/" + key);
    leningen.orderByKey().on("child_added", function(data) {
-   that.setLoanValues(data, key);
+   if(!data.child("opgehaald").val()) {
+      that.setLoanValues(data, key);
+    }
    });
  }
 
@@ -41,10 +43,20 @@ export class UitleenService {
    var product = firebase.database().ref("/producten/" + productId);
 
    product.orderByValue().on("value", function(data) {
-     var imgLocation = data.child("imgLocation").val();
-     var productName = data.child("productNaam").val();
-     that.leningen.push({'productId': productId, 'opgehaald' : loanData.child('opgehaald').val(), 'userId' : userId, 'productName' : productName ,'imgSrc' : imgLocation,'productNaam' : productName, 'aantal' : loanData.child("aantal").val(), 'datum' : loanData.child("datum_aangevraagd").val(), 'inleverdatum' : loanData.child("inleverdatum").val()});
-   });
+
+     var leningInstance:lening = new lening();
+     leningInstance.productId = productId;
+     leningInstance.opgehaald = loanData.child('opgehaald').val();
+     leningInstance.userId = userId;
+     leningInstance.imgSrc = data.child("imgLocation").val();
+     leningInstance.productNaam = data.child("productNaam").val();
+     leningInstance.aantal = loanData.child("aantal").val();
+     leningInstance.datum = loanData.child("datum_aangevraagd").val();
+     leningInstance.inleverdatum = loanData.child("inleverdatum").val();
+
+     that.leningList.push(leningInstance);
+
+     });
 
  }
 

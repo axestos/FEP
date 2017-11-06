@@ -17,34 +17,36 @@
 
     </div>
 
+
     <div class="col-md-12">
-
-        <table class="table">
-          <th> Product </th>
-          <th> Productnaam </th>
-          <th> Klantnaam </th>
-          <th> Datum aangevraagd </th>
-          <th> Inleverdatum </th>
-          <th> Aantal </th>
-          <th> Uitlenen </th>
-
-
-          <tr *ngFor="let lening of leningen; let i=index" >
-            <ng-container *ngIf="!lening.opgehaald">
-              <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
-              <td>{{ lening.productNaam }}</td>
-              <td> {{lening.userId}}</td>
-              <td>{{ lening.datum }}</td>
-              <td>{{ lening.inleverdatum }}</td>
-              <td>{{ lening.aantal }}</td>
-              <td> <img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" (click)="loanProductClick(lening)"/></td>
-            </ng-container>
-          </tr>
+      <ng-container *ngIf="leningList?.length == 0">
+        Er zijn geen leningaanvragen op het moment.
+      </ng-container>
+      <ng-container *ngIf="leningList?.length > 0">
+          <table class="table">
+            <th> Product </th>
+            <th> Productnaam </th>
+            <th> Klantnaam </th>
+            <th> Datum aangevraagd </th>
+            <th> Inleverdatum </th>
+            <th> Aantal </th>
+            <th> Uitlenen </th>
 
 
 
-        </table>
-
+            <tr *ngFor="let lening of leningList; let i=index" >
+              <ng-container *ngIf="!lening.opgehaald">
+                <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
+                <td>{{ lening.productNaam }}</td>
+                <td>{{lening.userId}}</td>
+                <td>{{ lening.datum }}</td>
+                <td>{{ lening.inleverdatum }}</td>
+                <td>{{ lening.aantal }}</td>
+                <td> <img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" (click)="loanProductClick(lening)"/></td>
+              </ng-container>
+            </tr>
+          </table>
+      </ng-container>
     </div>
 
   </div>
