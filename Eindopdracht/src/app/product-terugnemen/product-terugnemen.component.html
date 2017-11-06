@@ -1,4 +1,3 @@
-
 <div class="container">
 
   <div class="row">
@@ -9,38 +8,46 @@
 
     <div class="col-md-4">
         <br/>
-        <form class="searchForm">
+        <h3> Product terugnemen </h3>
+        <!--<form class="searchForm">
 
-          <h3> Product terugnemen </h3>
-          <input type="text" placeholder="Zoek op studentnummer">
-
-        </form>
+          <input type="text" placeholder="Zoek op studentnummer"/>
+          <input type="button" value="Zoeken"/>
+        </form>-->
 
     </div>
 
 
-    <button class="btn btn-primary float-right" (click)="loadData()"> GetDataBaseLening </button>
-    {{test[0]['aantal']}}
     <div class="col-md-12">
-
-        <table class="table">
-          <th> Product </th>
-          <th> Productnaam </th>
-          <th> Klantnaam </th>
-          <th> Inleverdatum </th>
-          <th> Datum aangevraagd </th>
-          <th> Aantal </th>
-          <th> Uitlenen </th>
-
-
-          <tr *ngFor="let x of data; let i=index">
-            <td>{{ x }}</td>
-          </tr>
-
+      <ng-container *ngIf="leningList?.length == 0">
+        Er zijn geen leningen op het moment die beëindigd kunnen worden.<br>
+        Als deze er wel horen te zijn, heb dan een ogenblik geduld.
+      </ng-container>
+      <ng-container *ngIf="leningList?.length > 0">
+          <table class="table">
+            <th> Product </th>
+            <th> Productnaam </th>
+            <th> Klantnaam </th>
+            <th> Datum aangevraagd </th>
+            <th> Inleverdatum </th>
+            <th> Aantal </th>
+            <th> Inleveren </th>
 
 
-        </table>
 
+            <tr *ngFor="let lening of leningList; let i=index" >
+              <ng-container *ngIf="lening.opgehaald">
+                <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
+                <td>{{ lening.productNaam }}</td>
+                <td>{{ lening.userId }}</td>
+                <td>{{ lening.datum }}</td>
+                <td>{{ lening.inleverdatum }}</td>
+                <td>{{ lening.aantal }}</td>
+                <td> <img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" (click)="loanProductClick(lening)"/></td>
+              </ng-container>
+            </tr>
+          </table>
+      </ng-container>
     </div>
 
   </div>
