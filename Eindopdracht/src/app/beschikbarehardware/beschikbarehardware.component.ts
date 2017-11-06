@@ -36,7 +36,10 @@ export class BeschikbarehardwareComponent implements OnInit {
 
 
  ngOnInit() {
-   this.loadData();
+   if(this.hardwareList.length <= 0){
+
+     this.loadData();
+   }
  }
 
 

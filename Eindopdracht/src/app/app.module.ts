@@ -17,6 +17,7 @@ import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 import { TerugneemService } from './product-terugnemen/terugneem.service';
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
+import { Globals } from './globals';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -57,4 +58,5 @@ const firebaseConfig = {
               TerugneemService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

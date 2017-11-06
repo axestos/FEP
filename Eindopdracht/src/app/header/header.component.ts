@@ -8,10 +8,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  docent = false;
-  username = 'J.Jansen';
-
-  currentUser : {docent: boolean, username: string};
+  currentUser : {docent: boolean, username: string} = {docent: null, username: null};
 
   constructor(public authService: AuthService) {
     this.currentUser = authService.currentUser

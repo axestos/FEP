@@ -16,16 +16,16 @@ export class ProductTerugnemenComponent implements OnInit {
      this.leningList = terugneemservice.leningList;
 
      //TODO: dit globaal ergens neerzetten
-     this.router.events.subscribe(event => {
-        if (event.constructor.name === 'NavigationStart') {
-          console.log(event);
+    //  this.router.events.subscribe(event => {
+    //     if (event.constructor.name === 'NavigationStart') {
+    //       console.log(event);
 
-          if(event['url'] === '/productterugnemen') {
-            var table = document.getElementsByClassName('table')[0];
-            table.innerHTML = '';
-          }
-        }
-     });
+    //       if(event['url'] === '/productterugnemen') {
+    //         var table = document.getElementsByClassName('table')[0];
+    //         table.innerHTML = '';
+    //       }
+    //     }
+    //  });
    }
    loadData(){
      this.terugneemservice.loadKeys();
@@ -40,7 +40,9 @@ export class ProductTerugnemenComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadData();
+    if(this.leningList.length <= 0){
+      this.loadData();
+    }
   }
 
 }

@@ -18,16 +18,16 @@ export class ProductUitlenenComponent implements OnInit {
      this.leningList = uitleenService.leningList;
 
      //TODO: dit globaal ergens neerzetten
-     this.router.events.subscribe(event => {
-        if (event.constructor.name === 'NavigationStart') {
-          console.log(event);
+    //  this.router.events.subscribe(event => {
+    //     if (event.constructor.name === 'NavigationStart') {
+    //       console.log(event);
 
-          if(event['url'] === '/productuitlenen') {
-            var table = document.getElementsByClassName('table')[0];
-            table.innerHTML = '';
-          }
-        }
-     });
+    //       if(event['url'] === '/productuitlenen') {
+    //         var table = document.getElementsByClassName('table')[0];
+    //         table.innerHTML = '';
+    //       }
+    //     }
+    //  });
    }
 
    loadData(){
@@ -43,6 +43,8 @@ export class ProductUitlenenComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadData();
+    if(this.leningList.length <= 0){
+      this.loadData();
+    }
   }
 }

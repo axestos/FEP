@@ -8,56 +8,29 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul *ngIf="currentUser?.username" class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="/dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       </li>
-    <li class="nav-item">
+    <li *ngIf="currentUser?.docent" class="nav-item">
       <a class="nav-link" href="/productuitlenen" routerLink="/productuitlenen" routerLinkActive="active">Uitlenen</a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="currentUser?.docent" class="nav-item">
       <a class="nav-link" href="/productterugnemen" routerLink="/productterugnemen" routerLinkActive="active">Terugnemen</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/beschikbarehardware" routerLink="/beschikbarehardware" routerLinkActive="active">Hardware</a>
     </li>
     </ul>
-    <div class="nav-item">
-      <a *ngIf="currentUser?.username" class="nav-link" href="" (click)="logout()" role="button">
-        {{currentUser.username}} (Uitloggen)
-      </a>
-      <a *ngIf="!currentUser?.username" class="nav-link " href=""  role="button"  aria-expanded="false">
-          Inloggen
+  </div>
+      <div class="nav-item">
+        <a id="gebruiker" *ngIf="currentUser?.username" class="nav-link" href="" (click)="logout()" role="button">
+          {{currentUser.username}} (Uitloggen)
         </a>
-  </div>
-  </div>
+        <a id="gebruiker" *ngIf="!currentUser?.username" class="nav-link " href=""  role="button"  aria-expanded="false">
+            Inloggen
+          </a>
+    </div>
 </nav>
-<!--
-      <div class="row" id="nav-row">
-        <img src="https://www.cjponyparts.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/b/bbk1577_1.573.jpg" width="100" height="100" />
-
-        <div class="col-md-10" id="navigation">
-          <ul class="list-inline">
-            <a href="/dashboard" class="list-group-item">Dashboard</a>
-<a href="/productinfo" class="list-group-item">Product</a>
-            <div *ngIf="docent" class="if">
-              <a href="/hardware" class="list-group-item">Hardware</a>
-            </div>
-
-            <div *ngIf="!docent" class="if">
-              <a href="/productuitlenen" class="list-group-item">Uitlenen</a>
-              <a href="/productterugnemen" class="list-group-item">Terugnemen</a>
-
-              <a href="/beschikbarehardware" class="list-group-item">Hardware</a>
-            </div>
-
-
-              <a href="/hardware" class="list-group-item">Hardware</a>
-       <a href="#" (click)="logout()" class="list-group-item">Uitloggen ({{username}})</a>
-
-          </ul>
-
-        </div>
-      </div> -->
 </div>
 <br>
