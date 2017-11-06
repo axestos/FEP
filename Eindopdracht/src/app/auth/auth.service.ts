@@ -12,12 +12,15 @@ export class AuthService {
       this.user = firebaseAuth.authState;
     }
 
+    currentUser : {docent: boolean, username: string} = {docent: false, username: null}
+
     login(email: string, password: string, error: {message:string}) {
         this.firebaseAuth
           .auth
           .signInWithEmailAndPassword(email, password)
           .then(value => {
             console.log('Logged in!');
+            this.currentUser.username = email
 
           })
           .catch(err => {

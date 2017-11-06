@@ -11,7 +11,11 @@ export class HeaderComponent implements OnInit {
   docent = false;
   username = 'J.Jansen';
 
-  constructor(public authService: AuthService) {}
+  currentUser : {docent: boolean, username: string};
+
+  constructor(public authService: AuthService) {
+    this.currentUser = authService.currentUser
+  }
 
   ngOnInit() {
   }

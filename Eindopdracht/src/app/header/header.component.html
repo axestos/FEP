@@ -22,14 +22,14 @@
       <a class="nav-link" href="/beschikbarehardware" routerLink="/beschikbarehardware" routerLinkActive="active">Hardware</a>
     </li>
     </ul>
-    <div class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{username}}
+    <div class="nav-item">
+      <a *ngIf="currentUser?.username" class="nav-link" href="" (click)="logout()" role="button">
+        {{currentUser.username}} (Uitloggen)
       </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#" (click)="logout()">Uitloggen</a>
-      </div>
-    </div>
+      <a *ngIf="!currentUser?.username" class="nav-link " href=""  role="button"  aria-expanded="false">
+          Inloggen
+        </a>
+  </div>
   </div>
 </nav>
 <!--
