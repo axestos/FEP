@@ -8,7 +8,10 @@ import { AuthService } from '../auth/auth.service';
 //import hardware class om een lijst met hardware objecten mee te maken
 import { hardware } from './hardware';
 
+//geeft mogelijkheid via constructor iets mee te geven aan bepaalde classes waardoor de component automatisch het object kent
 import { Injectable } from '@angular/core';
+
+//handles change of object
 import { Observable } from 'rxjs/Observable';
 
 

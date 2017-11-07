@@ -1,8 +1,16 @@
+//geeft mogelijkheid via constructor iets mee te geven aan bepaalde classes waardoor de component automatisch het object kent
 import { Injectable } from '@angular/core';
+
+//import database
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
+
+//handles change of object
 import { Observable } from 'rxjs/Observable';
+
+//gebruikt navigeren van ene naar andere pagina en de content opnieuw word geladen terwijl de rest blijft staan
 import { Router } from '@angular/router';
+
 @Injectable()
 export class AuthService{
   public user: Observable<firebase.User>;
@@ -11,8 +19,11 @@ export class AuthService{
       this.user = firebaseAuth.authState;
     }
 
+    //bijhouden wie de applicatie gebruikt en wat de rechten zijn
     currentUser : {docent: boolean, username: string} = {docent: null, username: null};
 
+
+    //authenticatie van de gebruiker
     login(email: string, password: string, error: {message:string}) {
         this.firebaseAuth
           .auth
@@ -33,7 +44,7 @@ export class AuthService{
           });
       }
 
-
+      //user logout
       logout() {
         this.firebaseAuth
           .auth
