@@ -11,7 +11,6 @@ import { AuthService } from './auth/auth.service';
 import { LeningAanvragenComponent } from './lening-aanvragen/lening.aanvragen.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
-import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
