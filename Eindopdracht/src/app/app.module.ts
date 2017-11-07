@@ -17,9 +17,10 @@ import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 import { TerugneemService } from './product-terugnemen/terugneem.service';
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
-import { Globals } from './globals';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 const firebaseConfig = {
@@ -49,13 +50,15 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     FormsModule,
-    routing
+    routing,
+    ReactiveFormsModule
   ],
   providers: [AuthService,
               UitleenService,
               ProductinfoService,
               HardwareService,
-              TerugneemService],
+              TerugneemService,
+            FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

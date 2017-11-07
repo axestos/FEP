@@ -8,7 +8,7 @@
   </tr>
   <tr align="center" valign="middle" *ngFor="let hardware of hardwareList; let i=index">
     <td><img src={{hardware.imgLocation}} height="40" width="40"/></td>
-    <td><a href="/productinfo/{{i+1}}" style="display:block;">{{hardware.naam}}</a></td>
+    <td><a [routerLink]="['/productinfo/'+ (i+1)]" style="display:block;">{{hardware.naam}}</a></td>
     <td>{{ hardware.omschrijving }}</td>
     <td>{{ hardware.voorraad }}</td>
     <td>{{ hardware.maxLeentijdDagen }}</td>

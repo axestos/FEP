@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductinfoService} from '../productinfo/productinfo.service';
 import { product } from './product';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,13 +13,25 @@ import { product } from './product';
 })
 export class ProductinfoComponent implements OnInit, OnDestroy {
   private sub: any;
+  complexForm : FormGroup;
 
  id: string;
+
+ terugbrengenOp;
+
  public test : {productNaam: string};
  public product: product;
 
-  constructor(private route: ActivatedRoute, public productinfoService: ProductinfoService) {
+  constructor(
+    private route: ActivatedRoute, 
+    public productinfoService: ProductinfoService,
+    fb: FormBuilder) {
     this.product = new product();
+    this.complexForm = fb.group({
+      // We can set default values by passing in the corresponding value or leave blank if we wish to not set the value. For our example, we’ll default the gender to female.
+      'aantal' : [null, Validators.required],
+      'terugbrengenOp': [null, Validators.required],
+    })
   }
    ngOnDestroy() {
     this.sub.unsubscribe();
@@ -68,11 +82,15 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
     this.productinfoService.addToShoppingCart(product);
   }
 
+  submitForm(form: any): void{
+    console.log('Form Data: ');
+    console.log(form);
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.loadData();
-      console.log(this.product);
     });
 }
 }

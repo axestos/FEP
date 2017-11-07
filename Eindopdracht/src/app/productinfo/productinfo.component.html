@@ -1,4 +1,5 @@
 <div class="container" *ngIf="product.naam">
+
   <div class="card">
     <div class="card-body">
 
@@ -20,37 +21,41 @@
 <br>
 <div class="card">
   <div class="card-body">
+
+
   <h3> Lenen </h3>
+  <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
   <div class="row">
     <div class="col-md-3" >
       <h5>Aantal</h5>
     </div>
 
     <div class="col-md-9">
-      <input class="form-control" type="number" value="1" min="1" max="{{product.voorraad}}"/> <i>Maximaal te lenen: <b>{{product.voorraad}}</b></i>
+      <input class="form-control has-error" type="number" min="1" max="{{product.voorraad}}" [ngClass]="{'has-error':!complexForm.controls['aantal'].valid && complexForm.controls['aantal'].touched}" [formControl]="complexForm.controls['aantal']" required/> <small class="form-text text-muted"><i>Maximaal te lenen: <b>{{product.voorraad}}</b></i></small>
+      <div *ngIf="!complexForm.controls['aantal'].valid && complexForm.controls['aantal'].touched" class="alert alert-danger">Vul een correct aantal in</div>
     </div>
-  </div>
+</div>
 
-  <div class="row" *ngIf="product.maxLeentijdDagen">
+  <div class="row" >
     <div class="col-md-3">
       <h5>Terugbrengen op</h5>
     </div>
 
     <div class="col-md-9">
-      <input class="form-control" type="date" max="{{getMaxDatum()}}" min="{{getMinDatum()}}"/> <i>Uiterlijk te lenen tot: <b>{{getInleverdatum()}}</b></i>
+      <input class="form-control" type="date" max="{{getMaxDatum()}}" min="{{getMinDatum()}}" [ngClass]="{'has-error':!complexForm.controls['terugbrengenOp'].valid && complexForm.controls['terugbrengenOp'].touched}"  [formControl]="complexForm.controls['terugbrengenOp']" required pattern="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]20\d{2}$"/> <small class="form-text text-muted"><i>Uiterlijk te lenen tot: <b>{{getInleverdatum()}}</b></i></small>
+      <div *ngIf="!complexForm.controls['terugbrengenOp'].valid && complexForm.controls['terugbrengenOp'].touched" class="alert alert-danger">Vul een geldige datum in</div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
       <br/>
-      <button class="btn btn-primary float-right" (click)="shoppingCartClick(product)" >Toevoegen aan winkelmandje </button>
+      <button class="btn btn-primary float-right" [disabled]="!complexForm.valid" >Lening aanvragen</button>
     </div>
+  </div>
 
-  </div>
-  
-  </div>
+</form>
 </div>
-
+</div>
 </div>
   

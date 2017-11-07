@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 @Injectable()
 export class AuthService{
   public user: Observable<firebase.User>;
 
-    constructor(private firebaseAuth: AngularFireAuth) {
+    constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
       this.user = firebaseAuth.authState;
     }
-  
 
     currentUser : {docent: boolean, username: string} = {docent: null, username: null};
 
@@ -20,20 +20,12 @@ export class AuthService{
           .then(value => {
             console.log('Logged in!');
             this.currentUser.username = email;
-            // this.globals.currentUser.username = email;
-            // this.globals.setUsername(email);
-            // console.log(this.globals.currentUser.username);
             if (email.indexOf("@student.hu.nl") != -1) {
               this.currentUser.docent = false;
-              // this.globals.currentUser.docent = false;
-              // this.globals.setDocent(false);
             } else {
               this.currentUser.docent = true;
-              // this.globals.currentUser.docent = true;
-              // this.globals.setDocent(true);
             }
-            // console.log(this.globals.currentUser.docent);
-
+            this.router.navigateByUrl('/dashboard');
           })
           .catch(err => {
             console.log('Er is iets fout gegaan: ',err.message);
