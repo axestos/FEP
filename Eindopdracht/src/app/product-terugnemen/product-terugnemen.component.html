@@ -19,11 +19,11 @@
 
 
     <div class="col-md-12">
-      <!--<ng-container *ngIf="allesOpgehaald">
+    <ng-container *ngIf="allesOpgehaald || leningenCount == 0">
         Er zijn geen leningen op het moment die beëindigd kunnen worden.<br>
         Als deze er wel horen te zijn, heb dan een ogenblik geduld.
-      </ng-container>-->
-      <!--<ng-container *ngIf="!allesOpgehaald">-->
+      </ng-container>
+      <ng-container *ngIf="!allesOpgehaald && leningenCount > 0">
           <table class="table">
             <th> Product </th>
             <th> Productnaam </th>
@@ -47,7 +47,7 @@
               </ng-container>
             </tr>
           </table>
-      <!--</ng-container>-->
+      </ng-container>
     </div>
 
   </div>

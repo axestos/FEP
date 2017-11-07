@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 //import database
 import * as firebase from 'firebase';
 
-//import services
-import { TerugneemService} from './terugneem.service';
 
 //gebruikt navigeren van ene naar andere pagina en de content opnieuw word geladen terwijl de rest blijft staan
 import {Router} from '@angular/router';
@@ -12,7 +10,6 @@ import { lening } from '../product-uitlenen/lening';
 
 // Importeer FireBase
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
-import * as firebase from 'firebase';
 
 // Importeer services
 import { ProductService } from '../_services/product.service'
@@ -29,6 +26,7 @@ export class ProductTerugnemenComponent implements OnInit {
 
   leningen: Observable<any[]>;
   allesOpgehaald = true;
+  leningenCount = 0;
 
   public leningList:lening[] = [];
    constructor(
@@ -40,6 +38,7 @@ export class ProductTerugnemenComponent implements OnInit {
     this.leningen.subscribe(leningen => {
       let leningTemp = leningen as lening[];
       for (let lening of leningTemp){
+        this.leningenCount++;
         if (lening.opgehaald){
           this.allesOpgehaald = false;
           return;
