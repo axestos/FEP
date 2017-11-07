@@ -23,9 +23,7 @@ export class ProductUitlenenComponent implements OnInit {
   leningen: Observable<any[]>;
   allesOpgehaald = true;
 
-  public leningList:lening[] = [];
-
-
+  //Constructor where is subscribed to the observable leningen.
   constructor(
      private router: Router,
      private leningService: LeningService,
@@ -33,6 +31,7 @@ export class ProductUitlenenComponent implements OnInit {
     ) {
     this.leningen = leningService.leningen;
     this.leningen.subscribe(leningen => {
+      //Check each lening so that we know if there's an active lening
       let leningTemp = leningen as lening[];
       for (let lening of leningTemp){
         if (!lening.opgehaald){
@@ -43,9 +42,8 @@ export class ProductUitlenenComponent implements OnInit {
       }
    })}
 
-
+   //Handles the click on a loan.
    loanProductClick(lening) {
-      // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
       var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' aan: '+ lening.username +' wilt uitlenen?');
       if (r == true) {
         this.leningService.leningOphalen(lening);
@@ -53,7 +51,7 @@ export class ProductUitlenenComponent implements OnInit {
    }
 
 
-
+   //Called on init
   ngOnInit() {
   }
 }

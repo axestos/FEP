@@ -26,9 +26,7 @@ export class ProductTerugnemenComponent implements OnInit {
 
   leningen: Observable<any[]>;
   allesOpgehaald = true;
-  leningenCount = 0;
 
-  public leningList:lening[] = [];
    constructor(
      private router: Router,
      private leningService: LeningService,
@@ -50,6 +48,7 @@ export class ProductTerugnemenComponent implements OnInit {
       }
    })}
 
+//Confirmation voor de gebruiker zodat hij zeker weet dat hij deze lening bedoeld.
    loanProductClick(lening) {
       var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' van: '+ lening.username +' wilt terugnemen?');
       if (r == true) {
@@ -57,7 +56,6 @@ export class ProductTerugnemenComponent implements OnInit {
       }
    }
 
-  //laad de array met leningen vanuit de terugneemservice als deze leeg is
   ngOnInit() {
   }
 
