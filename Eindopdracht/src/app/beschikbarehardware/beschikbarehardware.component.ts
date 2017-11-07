@@ -24,12 +24,13 @@ export class BeschikbarehardwareComponent implements OnInit {
 
   //lijst met hardware objecten om te vullen vanuit de database en te tonen in html
   public hardwareList:hardware[]=[];
-
+  public isStudent : boolean;
   //Uit de productService halen we de producten die we daar uit de database hebben gehaald
   constructor(
-    private productService : ProductService) {
+    private productService : ProductService, private fireAuth : AngularFireAuth) {
       this.producten = productService.producten
   }
+
 
 
   // loadData(){
@@ -38,9 +39,14 @@ export class BeschikbarehardwareComponent implements OnInit {
 
 
  ngOnInit() {
-  //  if(this.hardwareList.length <= 0){
-  //    this.loadData();
-  //  }
+   this.fireAuth.authState.subscribe(auth => {
+     if(auth.email.indexOf("@student.hu.nl") !== -1){
+       this.isStudent = true;
+     }
+     else{
+       this.isStudent = false;
+     }});
+
  }
 
 

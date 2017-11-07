@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // if (this.currentUser.username == null) {
-    //   this.router.navigateByUrl('/');
-    // }
+     if (this.currentUser.username == null) {
+       this.router.navigateByUrl('/');
+     }
   }
 
   logout() {

@@ -56,11 +56,14 @@ const firebaseConfig = {
   ],
   providers: [AuthService,
               HardwareService,
-            FormBuilder,
-          AngularFireDatabase,
-        ProductService,
-      LeningService],
+              FormBuilder,
+              AngularFireDatabase,
+              ProductService,
+              LeningService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+
+
 }

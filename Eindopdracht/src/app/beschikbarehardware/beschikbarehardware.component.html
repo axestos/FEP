@@ -15,7 +15,7 @@
     <td>{{ product.productOmschrijving }}</td>
     <td>{{ product.productVoorraad }}</td>
     <td>{{ product.maxLeentijd }}</td>
-    <td><a *ngIf="product.productVoorraad > 0" [routerLink]="['/productinfo/'+ (product.$key)]" style="display:block;"><img src="../../assets/images/green-arrow.png" width="30" height="30"/></a></td>
+    <td><a *ngIf="product.productVoorraad > 0 && isStudent" [routerLink]="['/productinfo/'+ (product.$key)]" style="display:block;"><img src="../../assets/images/green-arrow.png" width="30" height="30"/></a></td>
   </tr>
 </table>
 </div>
