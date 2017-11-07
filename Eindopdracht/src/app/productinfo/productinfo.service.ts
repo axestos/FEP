@@ -27,6 +27,11 @@ export class ProductinfoService{
       });
     }
 
+    vraagLeningAan(product, aantal,datum){
+      
+    }
+
+
     //Product wordt ingeladen in winkelmandje array in het geheugen.
     //TODO: controleer of hij al in winkelmandje zit.
     addToShoppingCart(product) {

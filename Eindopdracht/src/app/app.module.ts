@@ -21,6 +21,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms'
+import { AngularFireDatabase, } from
+'angularfire2/database-deprecated';
+import { ProductService } from './_services/product.service'
+import { LeningService } from './_services/lening.service'
 
 
 const firebaseConfig = {
@@ -58,7 +62,10 @@ const firebaseConfig = {
               ProductinfoService,
               HardwareService,
               TerugneemService,
-            FormBuilder],
+            FormBuilder,
+          AngularFireDatabase,
+        ProductService,
+      LeningService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

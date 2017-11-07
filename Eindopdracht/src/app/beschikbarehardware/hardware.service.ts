@@ -5,11 +5,12 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
 import { hardware } from './hardware';
 
+
+
 @Injectable()
 export class HardwareService {
 
   private user: Observable<firebase.User>;
-
     constructor(private authService: AuthService) {
       this.user = authService.user;
     }
