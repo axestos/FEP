@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UitleenService} from '../product-uitlenen/uitleen.service';
 import {Router} from '@angular/router';
 import { lening } from './lening';
 
@@ -24,12 +23,12 @@ export class ProductUitlenenComponent implements OnInit {
   leningen: Observable<any[]>;
   allesOpgehaald = true;
 
-  public leningList:lening[] = []
+  public leningList:lening[] = [];
 
-   constructor(
-     public uitleenService: UitleenService, 
+
+  constructor(
      private router: Router,
-     private leningService: LeningService, 
+     private leningService: LeningService,
      public productService: ProductService
     ) {
     this.leningen = leningService.leningen;
@@ -44,9 +43,6 @@ export class ProductUitlenenComponent implements OnInit {
       }
    })}
 
-   loadData(){
-     this.uitleenService.loadKeys();
-   }
 
    loanProductClick(lening) {
       // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
@@ -56,11 +52,8 @@ export class ProductUitlenenComponent implements OnInit {
       }
    }
 
-   
+
 
   ngOnInit() {
-    // if(this.leningList.length <= 0){
-    //   this.loadData();
-    // }
   }
 }

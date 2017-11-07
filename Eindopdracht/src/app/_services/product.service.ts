@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 // Importeer models
 import { product } from '../_modals/product';
-
+import { lening } from '../product-uitlenen/lening';
 @Injectable()
 export class ProductService{
     producten: FirebaseListObservable<any[]>;
@@ -34,4 +34,13 @@ getProduct(id: string, product: product){
     })
 }
 
+setStock(id : number, productAantal : number) {
+  var currentStock;
+  var that = this;
+  this.afDatabase.database.ref('producten/'+id).once('value').then(function(data) {
+    currentStock = data.child("productVoorraad").val();
+    currentStock = currentStock + productAantal;
+    that.afDatabase.database.ref('producten/'+id+'/productVoorraad').set(currentStock);
+  });
+}
 }

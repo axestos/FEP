@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 // Importeer models
 import { product } from '../_modals/product';
+import { ProductService } from './product.service';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 
@@ -16,8 +17,8 @@ export class LeningService{
 constructor(
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    private router: Router
-){
+    private router: Router,
+    public productService : ProductService){
         this.leningen = this.afDatabase.list('/leningen/')
         .map(leningen => {
             leningen.map(l => {
@@ -62,4 +63,17 @@ constructor(
            })
         }
 
+
+         deleteLoan(lening) {
+           console.log(typeof(lening.product_key));
+           this.setStock(lening.product_key, lening.aantal);
+           this.afDatabase.database.ref('leningen/' + lening.$key ).remove();
+          // this.router.navigateByUrl('/dashboard');
+          // window.location.replace('/productterugnemen');
+         }
+
+        setStock(productId, productAantal){
+          this.productService.setStock(productId, productAantal);
+
+        }
 }
