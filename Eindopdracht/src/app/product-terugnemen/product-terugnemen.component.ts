@@ -37,8 +37,11 @@ export class ProductTerugnemenComponent implements OnInit {
     this.leningen = leningService.leningen;
     this.leningen.subscribe(leningen => {
       let leningTemp = leningen as lening[];
+      if(leningTemp.length == 0){
+        this.allesOpgehaald = true;
+        return;
+      }
       for (let lening of leningTemp){
-        this.leningenCount++;
         if (lening.opgehaald){
           this.allesOpgehaald = false;
           return;
@@ -48,7 +51,7 @@ export class ProductTerugnemenComponent implements OnInit {
    })}
 
    loanProductClick(lening) {
-      var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' van: '+ lening.username +' wilt innemen?');
+      var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' van: '+ lening.username +' wilt terugnemen?');
       if (r == true) {
         this.leningService.deleteLoan(lening);
       }

@@ -34,6 +34,7 @@ getProduct(id: string, product: product){
     })
 }
 
+
 trekVoorraadAf(id : number, productAantal : number) {
     var currentStock;
     var that = this;
@@ -44,7 +45,7 @@ trekVoorraadAf(id : number, productAantal : number) {
     });
   }
 
-setStock(id : number, productAantal : number) {
+voegVoorraadToe(id : number, productAantal : number) {
   var currentStock;
   var that = this;
   this.afDatabase.database.ref('producten/'+id).once('value').then(function(data) {

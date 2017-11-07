@@ -73,7 +73,7 @@ constructor(
          }
 
         setStock(productId, productAantal){
-          this.productService.setStock(productId, productAantal);
+          this.productService.voegVoorraadToe(productId, productAantal);
 
         }
 }
