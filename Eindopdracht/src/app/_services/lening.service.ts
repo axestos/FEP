@@ -57,7 +57,7 @@ constructor(
                       "inleverdatum" : inleverdatum,
                       "opgehaald" : false,
                       "product_key" : id,
-                      "user_key" : auth
+                      "user_key" : auth.uid
                 })
                 this.router.navigateByUrl('/beschikbarehardware');
            })
@@ -65,7 +65,6 @@ constructor(
 
 
          deleteLoan(lening) {
-           console.log(typeof(lening.product_key));
            this.setStock(lening.product_key, lening.aantal);
            this.afDatabase.database.ref('leningen/' + lening.$key ).remove();
          }

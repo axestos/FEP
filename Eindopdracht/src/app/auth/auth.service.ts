@@ -29,7 +29,6 @@ export class AuthService{
           .auth
           .signInWithEmailAndPassword(email, password)
           .then(value => {
-            console.log('Logged in!');
             this.currentUser.username = email;
             if (email.indexOf("@student.hu.nl") != -1) {
               this.currentUser.docent = false;
@@ -39,7 +38,6 @@ export class AuthService{
             this.router.navigateByUrl('/dashboard');
           })
           .catch(err => {
-            console.log('Er is iets fout gegaan: ',err.message);
           error.message = err.message;
           });
       }
@@ -49,7 +47,6 @@ export class AuthService{
         this.firebaseAuth
           .auth
           .signOut();
-          console.log("Uitgelogd")
       }
 
 }

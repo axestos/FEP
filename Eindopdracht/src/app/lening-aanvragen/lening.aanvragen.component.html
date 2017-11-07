@@ -43,7 +43,7 @@
     </div>
 
     <div class="col-md-9">
-      <input class="form-control" type="text" [ngClass]="{'has-error':(!leningForm.controls['terugbrengenOp'].valid && leningForm.controls['terugbrengenOp'].touched)|| datumError}"  [formControl]="leningForm.controls['terugbrengenOp']" required pattern="^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-20\d{2}$"/> <small class="form-text text-muted"><i>Uiterlijk te lenen tot: <b>{{dateHelper.formatDate(product.getInleverdatum())}}</b></i></small>
+      <input class="form-control" placeholder="dd-mm-jjjj" type="text" [ngClass]="{'has-error':(!leningForm.controls['terugbrengenOp'].valid && leningForm.controls['terugbrengenOp'].touched)|| datumError}"  [formControl]="leningForm.controls['terugbrengenOp']" required pattern="^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-2\d{3}$"/> <small class="form-text text-muted"><i>Uiterlijk te lenen tot: <b>{{dateHelper.formatDate(product.getInleverdatum())}}</b></i></small>
       <div *ngIf="!leningForm.controls['terugbrengenOp'].valid && leningForm.controls['terugbrengenOp'].touched" class="alert alert-danger">Vul een geldige datum in</div>
       <div *ngIf="datumError" class="alert alert-danger">{{datumError}}</div>
     </div>
