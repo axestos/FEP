@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+//import database
+import * as firebase from 'firebase';
+
+//import services
+import { TerugneemService} from './terugneem.service';
+
+//gebruikt navigeren van ene naar andere pagina en de content opnieuw word geladen terwijl de rest blijft staan
 import {Router} from '@angular/router';
 import { lening } from '../product-uitlenen/lening';
 
@@ -48,7 +55,7 @@ export class ProductTerugnemenComponent implements OnInit {
       }
    }
 
-
+  //laad de array met leningen vanuit de terugneemservice als deze leeg is
   ngOnInit() {
   }
 
