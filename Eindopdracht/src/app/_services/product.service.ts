@@ -33,4 +33,5 @@ getProduct(id: string, product: product){
         product.voorraad = snapshot.child("productVoorraad").val();
     })
 }
+
 }

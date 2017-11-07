@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 // Importeer models
 import { product } from '../_modals/product';
 import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LeningService{
@@ -14,7 +15,9 @@ export class LeningService{
 
 constructor(
     public afDatabase: AngularFireDatabase,
-    public afAuth: AngularFireAuth){
+    public afAuth: AngularFireAuth,
+    private router: Router
+){
         this.leningen = this.afDatabase.list('/leningen/')
         .map(leningen => {
             leningen.map(l => {
@@ -55,6 +58,7 @@ constructor(
                       "product_key" : id,
                       "user_key" : auth.uid
                 })
+                this.router.navigateByUrl('/beschikbarehardware');
            })
         }
 

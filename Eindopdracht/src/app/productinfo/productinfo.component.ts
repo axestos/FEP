@@ -22,7 +22,9 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
 
  public id: string;
   public product: product;
- public dateHelper: dateHelper = new dateHelper();
+  public dateHelper: dateHelper = new dateHelper();
+  public aantalError = null;
+  public datumError = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,28 +42,28 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
- 
   vraagLeningAan(formData: any){
     let datum = this.dateHelper.toDate(formData.terugbrengenOp);
     let aantal = parseInt(formData.aantal);
     if (formData.aantal <= this.product.voorraad && aantal > 0){
-      console.log("veilig");
-      if (datum <= (this.product.getInleverdatum()) && datum > new Date())  {
-        console.log("ook veilig");
-
-        this.leningService.vraagLeningAan(this.id, aantal, this.dateHelper.formatDate(new Date), this.dateHelper.formatDate(datum));
-      }
+      this.aantalError = null;
+    } else {
+      this.aantalError = "Aantal moet tussen 1 en " + this.product.voorraad+" liggen";
     }
-  }
+    if (datum <= (this.product.getInleverdatum()) && datum >= new Date())  {
+      this.datumError = null;
+    } else {
+      this.datumError = "Datum moet tussen "+this.dateHelper.formatDate(this.product.getMinDatum())+" en "+ this.dateHelper.formatDate(this.product.getMaxDatum())+ " liggen"
+    }
+    if (this.aantalError === null && this.datumError === null){
+      let bevestig = confirm("Weet u zeker dat u "+aantal+" x " + this.product.naam + " wilt lenen tot "+ this.dateHelper.formatDate(datum)+"?");
+      if (bevestig == true) {
+        this.leningService.vraagLeningAan(this.id, aantal, this.dateHelper.formatDate(new Date), this.dateHelper.formatDate(datum));
+    }
+  }}
+  
 
 
-//   vraagBevestiging(lening) {
-//     // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
-//     var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' aan: '+ lening.username +' wilt uitlenen?');
-//     if (r == true) {
-//       this.leningService.leningOphalen(lening);
-//     }
-//  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

@@ -13,7 +13,6 @@ export class product {
     
       getMinDatum(){
         let minDatum = new Date()
-        minDatum.setDate(minDatum.getDate() + 1);
         return minDatum;
       }
     
