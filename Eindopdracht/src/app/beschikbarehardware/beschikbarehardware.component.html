@@ -1,4 +1,4 @@
-<table style="width:100%" border="1">
+<table *ngIf="hardwareList[0]" style="width:100%" border="1">
   <tr align="center" valign="middle">
     <th>Product</th>
     <th>Naam</th>
@@ -14,3 +14,4 @@
     <td>{{ hardware.maxLeentijdDagen }}</td>
   </tr>
 </table>
+<div style="text-align:center" *ngIf="!hardwareList[0]"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"></div>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
-import { product } from './product';
+import { product } from '../_modals/product';
 
 @Injectable()
 export class ProductinfoService{

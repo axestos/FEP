@@ -4,13 +4,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
 import { lening } from '../product-uitlenen/lening';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TerugneemService {
 
   private user: Observable<firebase.User>;
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+      private router: Router) {
       this.user = authService.user;
     }
 
@@ -71,6 +73,7 @@ export class TerugneemService {
  deleteLoan(product) {
   firebase.database().ref('leningen/' + product.userId + '/' + product.productId).remove();
   this.setStock(product.productId, product.aantal);
+  // this.router.navigateByUrl('/dashboard');
   window.location.replace('/productterugnemen');
  }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductinfoService} from '../productinfo/productinfo.service';
-import { product } from './product';
+import { product } from '../_modals/product';
+import { dateHelper } from '../_helpers/date.helper';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
@@ -13,21 +14,18 @@ import { FormControl } from '@angular/forms';
 })
 export class ProductinfoComponent implements OnInit, OnDestroy {
   private sub: any;
-  complexForm : FormGroup;
+  leningForm : FormGroup;
 
- id: string;
-
- terugbrengenOp;
-
- public test : {productNaam: string};
- public product: product;
+ public id: string;
+  public product: product;
+ public dateHelper: dateHelper = new dateHelper();
 
   constructor(
     private route: ActivatedRoute, 
     public productinfoService: ProductinfoService,
     fb: FormBuilder) {
     this.product = new product();
-    this.complexForm = fb.group({
+    this.leningForm = fb.group({
       // We can set default values by passing in the corresponding value or leave blank if we wish to not set the value. For our example, we’ll default the gender to female.
       'aantal' : [null, Validators.required],
       'terugbrengenOp': [null, Validators.required],
@@ -41,50 +39,22 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
     this.productinfoService.loadData(this.id, this.product);
   }
 
-  getInleverdatum(): string{
-    let inleverDatum = new Date()
-    inleverDatum.setDate(inleverDatum.getDate() + this.product.maxLeentijdDagen);
-    var mm = inleverDatum.getMonth() + 1; // getMonth() is zero-based
-    var dd = inleverDatum.getDate();
-
-    return [(dd>9 ? '' : '0') + dd,"-",
-            (mm>9 ? '' : '0') + mm,"-",
-            inleverDatum.getFullYear()
-           ].join('');
-  }
-
-  getMinDatum(){
-    let minDatum = new Date()
-    minDatum.setDate(minDatum.getDate() + 1);
-    return this.formatDate(minDatum);
-  }
-
-
-  getMaxDatum(){
-    let maxDatum = new Date()
-    maxDatum.setDate(maxDatum.getDate() + this.product.maxLeentijdDagen);
-    return this.formatDate(maxDatum);
-  }
-
-  formatDate(date: Date){
-    var mm = date.getMonth() + 1; // getMonth() is zero-based
-    var dd = date.getDate();
-
-    return [date.getFullYear(),"-",
-            (mm>9 ? '' : '0') + mm,"-",
-            (dd>9 ? '' : '0') + dd
-           ].join('');
-
-  }
-
 
   shoppingCartClick(product: product) {
     this.productinfoService.addToShoppingCart(product);
   }
 
-  submitForm(form: any): void{
-    console.log('Form Data: ');
-    console.log(form);
+ 
+  vraagLeningAan(formData: any){
+    let datum = this.dateHelper.toDate(formData.terugbrengenOp);
+    if (formData.aantal <= this.product.voorraad && formData.aantal > 0){
+      console.log("veilig");
+      if (datum <= (this.product.getInleverdatum()) && datum > new Date())  {
+        console.log("ook veilig");
+      }
+    }
+    console.log(formData.aantal);
+    console.log(formData.terugbrengenOp);
   }
 
   ngOnInit() {
