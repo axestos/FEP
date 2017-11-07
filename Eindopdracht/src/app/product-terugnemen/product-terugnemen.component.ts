@@ -32,7 +32,7 @@ export class ProductTerugnemenComponent implements OnInit {
    }
 
    loanProductClick(product) {
-      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' van: '+ product.userId +' wilt innemen?');
+      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' van: '+ product.userEmail +' wilt terugnemen?');
       if (r == true) {
         this.terugneemservice.deleteLoan(product);
       }

@@ -19,7 +19,7 @@ export class TerugneemService {
   public users : {username : string};
   public keys : {key: string}[] = [];
   public leningList:lening[]=[];
-
+  public email : string;
 
   loadKeys() {
       var that = this;
@@ -28,6 +28,19 @@ export class TerugneemService {
       that.addLoan(data.key);
    });
  }
+
+ getUserEmail(userId):Promise<void> {//Returns email corresponding to UserId in table Users
+   return new Promise<void>(resolve =>{
+   var that = this;
+    var user = firebase.database().ref('/users/'+userId);
+    user.orderByValue().on('value', function(data)
+    {
+      that.email = data.child("email").val();
+      console.log(that.email);
+      resolve();
+    }
+  )
+ })}
 
  addLoan(key) {
    var that = this;
@@ -45,20 +58,22 @@ export class TerugneemService {
    var product = firebase.database().ref("/producten/" + productId);
 
    product.orderByValue().on("value", function(data) {
+     that.getUserEmail(userId).then(function(){
+       var leningInstance:lening = new lening();
+       leningInstance.productId = productId;
+       leningInstance.opgehaald = loanData.child('opgehaald').val();
+       leningInstance.userId = userId;
+       leningInstance.userEmail = that.email;
+       leningInstance.imgSrc = data.child("imgLocation").val();
+       leningInstance.productNaam = data.child("productNaam").val();
+       leningInstance.aantal = loanData.child("aantal").val();
+       leningInstance.datum = loanData.child("datum_aangevraagd").val();
+       leningInstance.inleverdatum = loanData.child("inleverdatum").val();
 
-     var leningInstance:lening = new lening();
-     leningInstance.productId = productId;
-     leningInstance.opgehaald = loanData.child('opgehaald').val();
-     leningInstance.userId = userId;
-     leningInstance.imgSrc = data.child("imgLocation").val();
-     leningInstance.productNaam = data.child("productNaam").val();
-     leningInstance.aantal = loanData.child("aantal").val();
-     leningInstance.datum = loanData.child("datum_aangevraagd").val();
-     leningInstance.inleverdatum = loanData.child("inleverdatum").val();
-
-     that.leningList.push(leningInstance);
+       that.leningList.push(leningInstance);
 
      });
+   });
 
  }
 

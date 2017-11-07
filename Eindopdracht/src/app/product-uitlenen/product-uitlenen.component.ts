@@ -35,7 +35,7 @@ export class ProductUitlenenComponent implements OnInit {
    }
 
    loanProductClick(product) {
-      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userId +' wilt uitlenen?');
+      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
       if (r == true) {
         this.uitleenService.setLoaned(product);
       }
