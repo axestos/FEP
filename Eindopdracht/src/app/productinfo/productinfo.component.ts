@@ -59,6 +59,7 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
       let bevestig = confirm("Weet u zeker dat u "+aantal+" x " + this.product.naam + " wilt lenen tot "+ this.dateHelper.formatDate(datum)+"?");
       if (bevestig == true) {
         this.leningService.vraagLeningAan(this.id, aantal, this.dateHelper.formatDate(new Date), this.dateHelper.formatDate(datum));
+        this.productService.trekVoorraadAf(parseInt(this.id), aantal)
     }
   }}
   
