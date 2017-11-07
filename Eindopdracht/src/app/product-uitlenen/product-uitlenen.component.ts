@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UitleenService} from '../product-uitlenen/uitleen.service';
+//
 import {Router} from '@angular/router';
+
+//import lening class
 import { lening } from './lening';
 
 // Importeer FireBase
@@ -11,6 +13,7 @@ import * as firebase from 'firebase';
 // Importeer services
 import { ProductService } from '../_services/product.service'
 import { LeningService } from '../_services/lening.service'
+import { UitleenService} from '../product-uitlenen/uitleen.service';
 
 import {Observable} from 'rxjs/Observable';
 
@@ -24,12 +27,14 @@ export class ProductUitlenenComponent implements OnInit {
   leningen: Observable<any[]>;
   allesOpgehaald = true;
 
+  //array with lening objecten die we volladen in de constructor
   public leningList:lening[] = []
 
+  //Uit de uitleenService halen de leningen die we daar uit de database hebben gehaald
    constructor(
-     public uitleenService: UitleenService, 
+     public uitleenService: UitleenService,
      private router: Router,
-     private leningService: LeningService, 
+     private leningService: LeningService,
      public productService: ProductService
     ) {
     this.leningen = leningService.leningen;
@@ -44,10 +49,12 @@ export class ProductUitlenenComponent implements OnInit {
       }
    })}
 
+   //build de lijst met leningen in de uitleenService
    loadData(){
      this.uitleenService.loadKeys();
    }
 
+   //afhandeling van het klikken op
    loanProductClick(lening) {
       // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
       var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' aan: '+ lening.username +' wilt uitlenen?');
@@ -56,7 +63,7 @@ export class ProductUitlenenComponent implements OnInit {
       }
    }
 
-   
+
 
   ngOnInit() {
     // if(this.leningList.length <= 0){

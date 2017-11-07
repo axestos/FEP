@@ -1,8 +1,12 @@
+// Importeer FireBase
 import * as firebase from 'firebase';
-import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth/auth.service';
+
+//import lening class om lening objecten te kunnen aanmaken
 import { lening } from './lening';
 
 @Injectable()
@@ -14,13 +18,17 @@ export class UitleenService {
       this.user = authService.user;
     }
 
+  //user details
   public users : {username : string};
-  public keys : {key: string}[] = [];
-  public leningList:lening[]=[];
   public email : string;
+  public keys : {key: string}[] = [];
+
+  //array met leningen die we vullen met data vanuit de database
+  public leningList:lening[]=[];
 
 
-  loadKeys() {//Gets all UserId's
+  //haal alle UserId's op uit de database
+  loadKeys() {
       var that = this;
       var leningen = firebase.database().ref("/leningen/");
       leningen.orderByKey().on("child_added", function(data) {
@@ -28,6 +36,7 @@ export class UitleenService {
    });
  }
 
+ //
  addLoan(key) {
    var that = this;
    var leningen = firebase.database().ref("/leningen/" + key);
@@ -38,7 +47,8 @@ export class UitleenService {
    });
  }
 
-  getUserEmail(userId):Promise<void> {//Returns email corresponding to UserId in table Users
+  //haalt email adres op aan de hand van UserId uit de tabel Users
+  getUserEmail(userId):Promise<void> {
     return new Promise<void>(resolve =>{
     var that = this;
      var user = firebase.database().ref('/users/'+userId);
@@ -52,7 +62,7 @@ export class UitleenService {
  })}
 
 
-
+ //maak een lening object aan met de data uit de database en push deze naar onze leningen array
  setLoanValues(loanData, userId) {
    var productId = loanData.key;
    var that = this;
@@ -87,6 +97,7 @@ export class UitleenService {
    });
  }
 
+ //status van lening veranderen
  setLoaned(product) {
   firebase.database().ref('leningen/' + product.userId + '/' + product.productId).set({
     opgehaald: true,
