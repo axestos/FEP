@@ -15,24 +15,13 @@ export class ProductTerugnemenComponent implements OnInit {
    constructor(public terugneemservice: TerugneemService, private router: Router) {
      this.leningList = terugneemservice.leningList;
 
-     //TODO: dit globaal ergens neerzetten
-    //  this.router.events.subscribe(event => {
-    //     if (event.constructor.name === 'NavigationStart') {
-    //       console.log(event);
-
-    //       if(event['url'] === '/productterugnemen') {
-    //         var table = document.getElementsByClassName('table')[0];
-    //         table.innerHTML = '';
-    //       }
-    //     }
-    //  });
    }
    loadData(){
      this.terugneemservice.loadKeys();
    }
 
    loanProductClick(product) {
-      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' van: '+ product.userEmail +' wilt terugnemen?');
+      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' van: '+ product.userEmail +' wilt innemen?');
       if (r == true) {
         this.terugneemservice.deleteLoan(product);
       }

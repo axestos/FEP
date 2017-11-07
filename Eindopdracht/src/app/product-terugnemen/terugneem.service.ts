@@ -60,6 +60,7 @@ export class TerugneemService {
    product.orderByValue().on("value", function(data) {
      that.getUserEmail(userId).then(function(){
        var leningInstance:lening = new lening();
+
        leningInstance.productId = productId;
        leningInstance.opgehaald = loanData.child('opgehaald').val();
        leningInstance.userId = userId;
@@ -89,7 +90,7 @@ export class TerugneemService {
   firebase.database().ref('leningen/' + product.userId + '/' + product.productId).remove();
   this.setStock(product.productId, product.aantal);
   // this.router.navigateByUrl('/dashboard');
-  window.location.replace('/productterugnemen');
+  // window.location.replace('/productterugnemen');
  }
 
 setStock(productId, productAantal){
