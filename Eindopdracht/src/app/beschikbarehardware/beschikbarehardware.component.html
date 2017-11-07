@@ -26,7 +26,7 @@
   </tr>
   <tr align="center" valign="middle" *ngFor="let product of producten | async; let i=index">
     <td><img src={{product.imgLocation}} height="40" width="40"/></td>
-    <td><a [routerLink]="['/productinfo/'+ (i+1)]" style="display:block;">{{product.productNaam}}</a></td>
+    <td><a [routerLink]="['/productinfo/'+ (product.$key)]" style="display:block;">{{product.productNaam}}</a></td>
     <td>{{ product.productOmschrijving }}</td>
     <td>{{ product.productVoorraad }}</td>
     <td>{{ product.maxLeentijd }}</td>

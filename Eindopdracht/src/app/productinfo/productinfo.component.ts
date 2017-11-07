@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductinfoService} from '../productinfo/productinfo.service';
 import { product } from '../_modals/product';
 import { dateHelper } from '../_helpers/date.helper';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+
+// Importeer services
+import { ProductService } from '../_services/product.service'
+import { LeningService } from '../_services/lening.service'
 
 @Component({
   selector: 'app-productinfo',
@@ -21,8 +25,9 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
  public dateHelper: dateHelper = new dateHelper();
 
   constructor(
-    private route: ActivatedRoute, 
-    public productinfoService: ProductinfoService,
+    private route: ActivatedRoute,
+    private productService : ProductService,
+    private leningService : LeningService,
     fb: FormBuilder) {
     this.product = new product();
     this.leningForm = fb.group({
@@ -35,32 +40,33 @@ export class ProductinfoComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  loadData() {
-    this.productinfoService.loadData(this.id, this.product);
-  }
-
-
-  shoppingCartClick(product: product) {
-    this.productinfoService.addToShoppingCart(product);
-  }
-
  
   vraagLeningAan(formData: any){
     let datum = this.dateHelper.toDate(formData.terugbrengenOp);
-    if (formData.aantal <= this.product.voorraad && formData.aantal > 0){
+    let aantal = parseInt(formData.aantal);
+    if (formData.aantal <= this.product.voorraad && aantal > 0){
       console.log("veilig");
       if (datum <= (this.product.getInleverdatum()) && datum > new Date())  {
         console.log("ook veilig");
+
+        this.leningService.vraagLeningAan(this.id, aantal, this.dateHelper.formatDate(new Date), this.dateHelper.formatDate(datum));
       }
     }
-    console.log(formData.aantal);
-    console.log(formData.terugbrengenOp);
   }
+
+
+//   vraagBevestiging(lening) {
+//     // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
+//     var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' aan: '+ lening.username +' wilt uitlenen?');
+//     if (r == true) {
+//       this.leningService.leningOphalen(lening);
+//     }
+//  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.loadData();
+      this.productService.getProduct(this.id, this.product);
     });
 }
 }

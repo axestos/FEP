@@ -12,7 +12,6 @@ import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import {UitleenService} from './product-uitlenen/uitleen.service';
-import {ProductinfoService} from './productinfo/productinfo.service';
 import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
 import { TerugneemService } from './product-terugnemen/terugneem.service';
@@ -59,7 +58,6 @@ const firebaseConfig = {
   ],
   providers: [AuthService,
               UitleenService,
-              ProductinfoService,
               HardwareService,
               TerugneemService,
             FormBuilder,

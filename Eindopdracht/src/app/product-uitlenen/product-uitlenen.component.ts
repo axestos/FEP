@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+
 import { UitleenService} from '../product-uitlenen/uitleen.service';
 import {Router} from '@angular/router';
 import { lening } from './lening';
+
+// Importeer FireBase
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import * as firebase from 'firebase';
+
+// Importeer services
+import { ProductService } from '../_services/product.service'
+import { LeningService } from '../_services/lening.service'
+
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-uitlenen',
@@ -11,40 +21,46 @@ import { lening } from './lening';
 })
 export class ProductUitlenenComponent implements OnInit {
 
+  leningen: Observable<any[]>;
+  allesOpgehaald = true;
 
-  public leningList:lening[]=[];
+  public leningList:lening[] = []
 
-   constructor(public uitleenService: UitleenService, private router: Router) {
-     this.leningList = uitleenService.leningList;
-
-     //TODO: dit globaal ergens neerzetten
-    //  this.router.events.subscribe(event => {
-    //     if (event.constructor.name === 'NavigationStart') {
-    //       console.log(event);
-
-    //       if(event['url'] === '/productuitlenen') {
-    //         var table = document.getElementsByClassName('table')[0];
-    //         table.innerHTML = '';
-    //       }
-    //     }
-    //  });
-   }
+   constructor(
+     public uitleenService: UitleenService, 
+     private router: Router,
+     private leningService: LeningService, 
+     public productService: ProductService
+    ) {
+    this.leningen = leningService.leningen;
+    this.leningen.subscribe(leningen => {
+      let leningTemp = leningen as lening[];
+      for (let lening of leningTemp){
+        if (!lening.opgehaald){
+          this.allesOpgehaald = false;
+          return;
+        }
+        this.allesOpgehaald = true;
+      }
+   })}
 
    loadData(){
      this.uitleenService.loadKeys();
    }
 
-   loanProductClick(product) {
-      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
+   loanProductClick(lening) {
+      // var r = confirm("Weet u zeker dat u product " + product.productNaam + ' aan: '+ product.userEmail +' wilt uitlenen?');
+      var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' aan: '+ lening.username +' wilt uitlenen?');
       if (r == true) {
-        this.uitleenService.setLoaned(product);
+        this.leningService.leningOphalen(lening);
       }
    }
 
+   
 
   ngOnInit() {
-    if(this.leningList.length <= 0){
-      this.loadData();
-    }
+    // if(this.leningList.length <= 0){
+    //   this.loadData();
+    // }
   }
 }
