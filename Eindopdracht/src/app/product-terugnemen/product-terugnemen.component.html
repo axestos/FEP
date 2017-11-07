@@ -34,7 +34,7 @@
             <th> Inleveren </th>
 
 
-
+            <!--Tabel maken aan de hand van ngFor waarmee door alle eerder opgehaalde producten word heengeloopt-->
             <tr *ngFor="let lening of leningList; let i=index" >
               <ng-container *ngIf="lening.opgehaald">
                 <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>

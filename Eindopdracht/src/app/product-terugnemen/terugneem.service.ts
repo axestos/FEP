@@ -1,9 +1,17 @@
+//import database
 import * as firebase from 'firebase';
-import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+//import services
 import { AuthService } from '../auth/auth.service';
+
+//import lening class om een lijst met lening objecten te maken en deze te vullen aan de hand van de database
 import { lening } from '../product-uitlenen/lening';
+
+//gebruikt navigeren van ene naar andere pagina en de content opnieuw word geladen terwijl de rest blijft staan
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -11,15 +19,20 @@ export class TerugneemService {
 
   private user: Observable<firebase.User>;
 
+    //zet de gebruiker die gebruik maakt van de service
     constructor(private authService: AuthService,
       private router: Router) {
       this.user = authService.user;
     }
 
+  //user details
   public users : {username : string};
-  public keys : {key: string}[] = [];
-  public leningList:lening[]=[];
   public email : string;
+
+  public keys : {key: string}[] = [];
+
+  //array met leningen die we vullen met data vanuit de database
+  public leningList:lening[]=[];
 
   loadKeys() {
       var that = this;
@@ -29,7 +42,8 @@ export class TerugneemService {
    });
  }
 
- getUserEmail(userId):Promise<void> {//Returns email corresponding to UserId in table Users
+ //haal email op die past bij een bepaalde UserId uit de tabel users
+ getUserEmail(userId):Promise<void> {
    return new Promise<void>(resolve =>{
    var that = this;
     var user = firebase.database().ref('/users/'+userId);
@@ -42,6 +56,7 @@ export class TerugneemService {
   )
  })}
 
+ //vraag aanmaken van lening object aan voor een lening met een meegegeven key
  addLoan(key) {
    var that = this;
    var leningen = firebase.database().ref("/leningen/" + key);
@@ -52,6 +67,7 @@ export class TerugneemService {
    });
  }
 
+ //aanmaken lening object aan de hand van via db opgehaalde data waarna deze in de array met leningen word gezet
  setLoanValues(loanData, userId) {
    var productId = loanData.key;
    var that = this;
