@@ -1,0 +1,112 @@
+{
+  "leningen" : {
+    "-KyLxYxjW3yxx32VW7P-" : {
+      "aantal" : 1,
+      "datum_aangevraagd" : "5-11-2017",
+      "inleverdatum" : "12-11-2017",
+      "opgehaald" : true,
+      "product_key" : 1,
+      "user_key" : "EcMaCzZ4p0RQq4GBws1O3kiGu9y2"
+    },
+    "-KyLxeRjZ6cu8K5s2u2g" : {
+      "aantal" : 2,
+      "datum_aangevraagd" : "6-11-2017",
+      "inleverdatum" : "12-11-2017",
+      "opgehaald" : false,
+      "product_key" : 5,
+      "user_key" : "EcMaCzZ4p0RQq4GBws1O3kiGu9y2"
+    },
+    "-KyLxf02CckeNSrnifKV" : {
+      "aantal" : 1,
+      "datum_aangevraagd" : "5-11-2017",
+      "inleverdatum" : "12-11-2017",
+      "opgehaald" : false,
+      "product_key" : 1,
+      "user_key" : "UcKEHiWI6MY4ve7GYY8N18EePRx2"
+    },
+    "-KyNFmg9InfZiUKZQ6xt" : {
+      "aantal" : 15,
+      "datum_aangevraagd" : "07-11-2017",
+      "inleverdatum" : "07-11-2017",
+      "opgehaald" : false,
+      "product_key" : "1",
+      "user_key" : "UcKEHiWI6MY4ve7GYY8N18EePRx2"
+    }
+  },
+  "producten" : [ null, {
+    "imgLocation" : "../../assets/images/Arduino_Uno_-_R3.jpg",
+    "maxLeentijd" : 14,
+    "productNaam" : "Arduino",
+    "productOmschrijving" : "Arduino is een opensource-computerplatform bedoeld om microcontrollers eenvoudig te maken.",
+    "productVoorraad" : 0
+  }, {
+    "imgLocation" : "../../assets/images/P3132165.jpg",
+    "maxLeentijd" : 7,
+    "productNaam" : "Arduino USB cable",
+    "productOmschrijving" : "USB kabel voor de Arduino en Arduino Mini.",
+    "productVoorraad" : 52
+  }, {
+    "imgLocation" : "../../assets/images/LED_blink.jpg",
+    "maxLeentijd" : 6,
+    "productNaam" : "lampje(blink)",
+    "productOmschrijving" : "Een kleurenlampje.",
+    "productVoorraad" : 75
+  }, {
+    "imgLocation" : "../../assets/images/11303-01a.jpg",
+    "maxLeentijd" : 14,
+    "productNaam" : "Mini Arduino",
+    "productOmschrijving" : "De Arduino Mini is een microcontroller board gebaseerd op de ATmega328, bedoeld voor gebruik op breadboards of wanneer ruimte een probleem is.",
+    "productVoorraad" : 55
+  }, {
+    "imgLocation" : "../../assets/images/Pi2ModB1GB_-comp.jpg",
+    "maxLeentijd" : 14,
+    "productNaam" : "Raspberry Pi",
+    "productOmschrijving" : "Een Raspberry Pi singleboardcomputer bestaat uit een kleine printplaat met een Broadcom SoC, elektronische componenten en een aantal chassisdelen voor connectoren waarmee onder meer een toetsenbord en een monitor aangesloten kunnen worden.",
+    "productVoorraad" : 13
+  }, {
+    "imgLocation" : "../../assets/images/AKM41_LARGE.jpg",
+    "maxLeentijd" : 14,
+    "productNaam" : "Servomotor",
+    "productOmschrijving" : "Een servomotor of servomechanisme (vaak afgekort tot servo) is een apparaat om automatisch een mechanisch systeem te regelen, zonder directe mechanische verbinding.",
+    "productVoorraad" : 11
+  }, {
+    "imgLocation" : "../../assets/images/metallfilm-widerstande-0-6-w-1-.jpg",
+    "maxLeentijd" : 10,
+    "productNaam" : "Weerstand 0,6Ω",
+    "productOmschrijving" : "Weerstand van 0,6 ohm.",
+    "productVoorraad" : 74
+  }, {
+    "imgLocation" : "../../assets/images/1-ohm.jpg",
+    "maxLeentijd" : 10,
+    "productNaam" : "Weerstand 1Ω",
+    "productOmschrijving" : "Weerstand van 1 omh.",
+    "productVoorraad" : 52
+  } ],
+  "users" : {
+    "EcMaCzZ4p0RQq4GBws1O3kiGu9y2" : {
+      "achternaam" : "Nagel",
+      "email" : "evan.nagel@student.hu.nl",
+      "voornaam" : "Evan"
+    },
+    "OYGUVsZvOFMa9Fcmz2t0JBJpTgr2" : {
+      "achternaam" : "Le Fabre",
+      "email" : "tim.lefabre@hu.nl",
+      "voornaam" : "Tim"
+    },
+    "UHDFPU4vtxe8L3XEZUQbPGlwfzG3" : {
+      "achternaam" : "Vrijma",
+      "email" : "deva.vrijma@student.hu.nl",
+      "voornaam" : "Deva"
+    },
+    "UcKEHiWI6MY4ve7GYY8N18EePRx2" : {
+      "achternaam" : "Willemse",
+      "email" : "kevin.willemse@student.hu.nl",
+      "voornaam" : "Kevin"
+    },
+    "hO6d38YNCycYkXTVqULJOENi4BI2" : {
+      "achternaam" : "Snippe",
+      "email" : "steven.snippe@student.hu.nl",
+      "voornaam" : "Steven"
+    }
+  }
+}
