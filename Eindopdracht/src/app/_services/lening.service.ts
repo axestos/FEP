@@ -57,7 +57,7 @@ constructor(
                       "inleverdatum" : inleverdatum,
                       "opgehaald" : false,
                       "product_key" : id,
-                      "user_key" : auth.uid
+                      "user_key" : auth
                 })
                 this.router.navigateByUrl('/beschikbarehardware');
            })

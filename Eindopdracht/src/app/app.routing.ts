@@ -2,7 +2,7 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //import components
-import { ProductinfoComponent } from './productinfo/productinfo.component';
+import { LeningAanvragenComponent } from './lening-aanvragen/lening.aanvragen.component';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -20,8 +20,8 @@ const appRoutes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'productinfo/:id',
-    component: ProductinfoComponent
+    path: 'leningaanvragen/:id',
+    component: LeningAanvragenComponent
   },
   {
     path: 'productuitlenen',

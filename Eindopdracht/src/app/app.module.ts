@@ -8,7 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
-import { ProductinfoComponent } from './productinfo/productinfo.component';
+import { LeningAanvragenComponent } from './lening-aanvragen/lening.aanvragen.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
 import {HardwareService} from './beschikbarehardware/hardware.service';
@@ -40,7 +40,7 @@ const firebaseConfig = {
     LoginComponent,
     FooterComponent,
     HeaderComponent,
-    ProductinfoComponent,
+    LeningAanvragenComponent,
     ProductUitlenenComponent,
     ProductTerugnemenComponent,
     BeschikbarehardwareComponent,
@@ -55,7 +55,6 @@ const firebaseConfig = {
     ReactiveFormsModule
   ],
   providers: [AuthService,
-              HardwareService,
               FormBuilder,
               AngularFireDatabase,
               ProductService,

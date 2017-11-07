@@ -12,11 +12,11 @@ import { ProductService } from '../_services/product.service'
 import { LeningService } from '../_services/lening.service'
 
 @Component({
-  selector: 'app-productinfo',
-  templateUrl: './productinfo.component.html',
-  styleUrls: ['./productinfo.component.css']
+  selector: 'app-lening-aanvragen',
+  templateUrl: './lening.aanvragen.component.html',
+  styleUrls: ['./lening.aanvragen.component.css']
 })
-export class ProductinfoComponent implements OnInit, OnDestroy {
+export class LeningAanvragenComponent implements OnInit, OnDestroy {
   private sub: any;
   leningForm : FormGroup;
 
