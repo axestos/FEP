@@ -68,8 +68,6 @@ constructor(
            console.log(typeof(lening.product_key));
            this.setStock(lening.product_key, lening.aantal);
            this.afDatabase.database.ref('leningen/' + lening.$key ).remove();
-          // this.router.navigateByUrl('/dashboard');
-          // window.location.replace('/productterugnemen');
          }
 
         setStock(productId, productAantal){
