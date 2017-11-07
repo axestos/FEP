@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-import { TerugneemService} from './terugneem.service';
+
 import {Router} from '@angular/router';
 import { lening } from '../product-uitlenen/lening';
+
+// Importeer FireBase
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import * as firebase from 'firebase';
+
+// Importeer services
+import { ProductService } from '../_services/product.service'
+import { LeningService } from '../_services/lening.service'
+
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-terugnemen',
@@ -10,28 +19,37 @@ import { lening } from '../product-uitlenen/lening';
   styleUrls: ['./product-terugnemen.component.css']
 })
 export class ProductTerugnemenComponent implements OnInit {
-  public leningList:lening[]=[];
 
-   constructor(public terugneemservice: TerugneemService, private router: Router) {
-     this.leningList = terugneemservice.leningList;
+  leningen: Observable<any[]>;
+  allesOpgehaald = true;
 
-   }
-   loadData(){
-     this.terugneemservice.loadKeys();
-   }
+  public leningList:lening[] = [];
+   constructor(
+     private router: Router,
+     private leningService: LeningService,
+     public productService: ProductService
+    ) {
+    this.leningen = leningService.leningen;
+    this.leningen.subscribe(leningen => {
+      let leningTemp = leningen as lening[];
+      for (let lening of leningTemp){
+        if (lening.opgehaald){
+          this.allesOpgehaald = false;
+          return;
+        }
+        this.allesOpgehaald = true;
+      }
+   })}
 
-   loanProductClick(product) {
-      var r = confirm("Weet u zeker dat u product " + product.productNaam + ' van: '+ product.userEmail +' wilt innemen?');
+   loanProductClick(lening) {
+      var r = confirm("Weet u zeker dat u product " + lening.productNaam + ' van: '+ lening.username +' wilt innemen?');
       if (r == true) {
-        this.terugneemservice.deleteLoan(product);
+        this.leningService.deleteLoan(lening);
       }
    }
 
 
   ngOnInit() {
-    if(this.leningList.length <= 0){
-      this.loadData();
-    }
   }
 
 }

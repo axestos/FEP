@@ -19,11 +19,11 @@
 
 
     <div class="col-md-12">
-      <ng-container *ngIf="leningList?.length == 0">
+      <!--<ng-container *ngIf="allesOpgehaald">
         Er zijn geen leningen op het moment die beëindigd kunnen worden.<br>
         Als deze er wel horen te zijn, heb dan een ogenblik geduld.
-      </ng-container>
-      <ng-container *ngIf="leningList?.length > 0">
+      </ng-container>-->
+      <!--<ng-container *ngIf="!allesOpgehaald">-->
           <table class="table">
             <th> Product </th>
             <th> Productnaam </th>
@@ -35,19 +35,19 @@
 
 
 
-            <tr *ngFor="let lening of leningList; let i=index" >
+            <tr *ngFor="let lening of leningen | async let i=index" >
               <ng-container *ngIf="lening.opgehaald">
-                <td><img [src]="lening.imgSrc" width="50px" height="50px"> </td>
+                <td><img [src]="lening.imgLocation" width="50px" height="50px"> </td>
                 <td>{{ lening.productNaam }}</td>
-                <td>{{ lening.userEmail }}</td>
-                <td>{{ lening.datum }}</td>
+                <td>{{ lening.username }}</td>
+                <td>{{ lening.datum_aangevraagd }}</td>
                 <td>{{ lening.inleverdatum }}</td>
                 <td>{{ lening.aantal }}</td>
                 <td> <img src="http://downloadicons.net/sites/default/files/check--check-box-icon-50683.png" width="20" height="20" (click)="loanProductClick(lening)"/></td>
               </ng-container>
             </tr>
           </table>
-      </ng-container>
+      <!--</ng-container>-->
     </div>
 
   </div>

@@ -11,10 +11,8 @@ import { AuthService } from './auth/auth.service';
 import { ProductinfoComponent } from './productinfo/productinfo.component';
 import { routing } from './app.routing';
 import { ProductUitlenenComponent } from './product-uitlenen/product-uitlenen.component';
-import {UitleenService} from './product-uitlenen/uitleen.service';
 import {HardwareService} from './beschikbarehardware/hardware.service';
 import { ProductTerugnemenComponent } from './product-terugnemen/product-terugnemen.component';
-import { TerugneemService } from './product-terugnemen/terugneem.service';
 import { BeschikbarehardwareComponent } from './beschikbarehardware/beschikbarehardware.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -57,14 +55,12 @@ const firebaseConfig = {
     ReactiveFormsModule
   ],
   providers: [AuthService,
-              UitleenService,
               HardwareService,
-              TerugneemService,
             FormBuilder,
           AngularFireDatabase,
         ProductService,
       LeningService],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 }
